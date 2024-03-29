@@ -9,11 +9,14 @@ export default class MainMenu extends Phaser.Scene {
 
     preload():void {
         this.load.atlas('textures', 'assets/texture.png', 'assets/texture.json');
+        this.load.bitmapFont('rubik', 'assets/rubik-font_0.png', 'assets/rubik-font.fnt');
     }
 
     create():void {
         this.addTitle();
         this.addPlayButton();
+        this.add.bitmapText(this.game.renderer.width/2, 250, 'rubik', 'a game by bugvevo, slowback1, and mafcho')
+            .setOrigin(0.5, 0.5);
     }
 
     private addTitle() {
