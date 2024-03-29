@@ -1,6 +1,7 @@
 import MainScene from "./MainScene";
 import UIHelpers from "../UIHelpers";
 import BaseScene from "./BaseScene";
+import TutorialScene from "./TutorialScene";
 
 export default class MainMenu extends BaseScene {
     static readonly key = 'MainMenu';
@@ -11,6 +12,7 @@ export default class MainMenu extends BaseScene {
     create():void {
         this.addTitle();
         this.addPlayButton();
+        this.addTutorialButton();
     }
 
     update(time: number, delta: number):void {
@@ -25,6 +27,12 @@ export default class MainMenu extends BaseScene {
     private addPlayButton() {
         UIHelpers.addCenteredButton(this, 400, 'Play', () => {
             this.scene.start(MainScene.key);
+        });
+    }
+
+    private addTutorialButton() {
+        UIHelpers.addCenteredButton(this, 600, 'Tutorial', () => {
+            this.scene.start(TutorialScene.key);
         });
     }
 }
