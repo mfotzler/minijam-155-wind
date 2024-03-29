@@ -5,7 +5,7 @@ new Phaser.Game(
     {
         type: Phaser.AUTO,
         parent: 'game',
-        backgroundColor: '#000000',
+        backgroundColor: '#aaaaee',
         title: 'Something About Wind!',
         scale: {
             width: 1920,
