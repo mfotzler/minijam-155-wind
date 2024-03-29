@@ -24,10 +24,34 @@
         "y": 0.5
       }
     },
-    "menu-button": {
+    "blower-san": {
       "frame": {
         "x": 500,
         "y": 0,
+        "w": 300,
+        "h": 378
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 378
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 378
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "menu-button": {
+      "frame": {
+        "x": 0,
+        "y": 100,
         "w": 146,
         "h": 48
       },
@@ -55,8 +79,8 @@
     "image": "texture.png",
     "format": "RGBA8888",
     "size": {
-      "w": 646,
-      "h": 100
+      "w": 800,
+      "h": 378
     },
     "scale": 1
   }
