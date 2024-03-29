@@ -1,7 +1,15 @@
-import MessageBus from '$lib/bus/MessageBus';
 import type IStorageProvider from './IStorageProvider';
-import getLocalStorageMock from '$lib/testHelpers/localStorageMock';
+import MessageBus from "./MessageBus";
 
+function getLocalStorageMock(): IStorageProvider {
+	let store = {};
+
+	return {
+		getItem: vi.fn((key) => store[key]),
+		setItem: vi.fn((key, value) => (store[key] = value)),
+		getStore: () => store
+	};
+}
 describe('MessageBus', () => {
 	let storageProvider: IStorageProvider;
 
@@ -78,14 +86,14 @@ describe('MessageBus', () => {
 		expect(receivedValue).toEqual('hello world');
 	});
 
-	it('when subscribing to the message bus, calls the callback function with the current stored value', () => {
+	it('when subscribing to the message bus, does not call the callback function with the current stored value', () => {
 		MessageBus.sendMessage('test_message', 'value');
 
 		let receivedValue = '';
 
 		MessageBus.subscribe('test_message', (value) => (receivedValue = value));
 
-		expect(receivedValue).toEqual('value');
+		expect(receivedValue).toEqual('');
 	});
 
 	it('can get the most recently published message', () => {

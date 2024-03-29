@@ -1,4 +1,4 @@
-import { Messages } from '$lib/bus/Messages';
+import {Messages} from "./Messages";
 
 describe('Message List', () => {
 	it('every message is unique', () => {

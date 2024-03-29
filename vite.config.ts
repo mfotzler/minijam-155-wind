@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import replace from '@rollup/plugin-replace';
 
 export default defineConfig({
@@ -13,8 +13,12 @@ export default defineConfig({
           'typeof PLUGIN_CAMERA3D': "'false'",
           'typeof PLUGIN_FBINSTANT': "'false'",
           'typeof FEATURE_SOUND': "'true'"
-        })
+        }) as any
       ]
     }
+  },
+    test: {
+      include: ['src/**/*.{test,spec}.{js,ts}'],
+      globals: true,
   }
 });
