@@ -51,8 +51,6 @@ export default class MessageBus {
 
 		this.subscribers[message].push(callback);
 
-		callback(this.messageLog[message]);
-
 		return () => {
 			this.subscribers[message] = this.subscribers[message].filter((s) => s != callback);
 		};

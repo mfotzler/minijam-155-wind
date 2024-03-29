@@ -1,6 +1,7 @@
 import * as Phaser from 'phaser';
 import GameScene from './scenes/MainMenu';
 import MainScene from "./scenes/MainScene";
+import GameOver from "./scenes/GameOver";
 
 new Phaser.Game(
     {
@@ -14,7 +15,7 @@ new Phaser.Game(
             mode: Phaser.Scale.FIT,
             autoCenter: Phaser.Scale.CENTER_BOTH
         },
-        scene: [GameScene, MainScene],
+        scene: [GameScene, MainScene, GameOver],
         physics: {
             default: 'arcade',
             arcade: {
