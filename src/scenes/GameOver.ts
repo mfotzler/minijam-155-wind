@@ -1,21 +1,19 @@
-import * as Phaser from 'phaser';
 import MainScene from "./MainScene";
 import UIHelpers from "../UIHelpers";
+import BaseScene from "./BaseScene";
 
-export default class GameOver extends Phaser.Scene {
+export default class GameOver extends BaseScene {
     static readonly key = 'GameOver';
     constructor() {
         super({ key: GameOver.key });
     }
 
-    preload():void {
-        this.load.atlas('textures', 'assets/texture.png', 'assets/texture.json');
-        this.load.bitmapFont('rubik', 'assets/rubik-font_0.png', 'assets/rubik-font.fnt');
-    }
-
     create():void {
         this.addTitle();
         this.addPlayButton();
+    }
+
+    update(time: number, delta: number):void {
     }
 
     private addTitle() {
@@ -27,8 +25,5 @@ export default class GameOver extends Phaser.Scene {
         UIHelpers.addCenteredButton(this, 400, 'Play Again', () => {
             this.scene.start(MainScene.key);
         });
-    }
-
-    update(time: number, delta: number):void {
     }
 }

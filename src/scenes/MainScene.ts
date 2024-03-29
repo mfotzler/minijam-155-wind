@@ -3,19 +3,15 @@ import MessageBus from "../messageBus/MessageBus";
 import {Messages} from "../messageBus/Messages";
 import Timer from "../entities/Timer";
 import GameOver from "./GameOver";
+import BaseScene from "./BaseScene";
 import Container = Phaser.GameObjects.Container;
 
-export default class MainScene extends Phaser.Scene {
+export default class MainScene extends BaseScene {
     static readonly key = 'MainScene';
     private timeHandler: TimeHandler = new TimeHandler();
 
     constructor() {
         super({ key: MainScene.key});
-    }
-
-    preload():void {
-        this.load.atlas('textures', 'assets/texture.png', 'assets/texture.json');
-        this.load.bitmapFont('rubik', 'assets/rubik-font_0.png', 'assets/rubik-font.fnt');
     }
 
     create():void {
@@ -24,18 +20,18 @@ export default class MainScene extends Phaser.Scene {
         this.addGameOverHandler();
     }
 
-    private addGameOverHandler() {
-        MessageBus.subscribe<void>(Messages.GameOver, () => {
-            this.scene.start(GameOver.key);
-        });
+    update(time: number, delta: number):void {
+        this.timeHandler.tick(delta);
     }
 
     private addTimer() {
         this.add.existing<Container>(new Timer(this.scene.scene, this.renderer.width / 2, 100));
     }
 
-    update(time: number, delta: number):void {
-        this.timeHandler.tick(delta);
+    private addGameOverHandler() {
+        MessageBus.subscribe<void>(Messages.GameOver, () => {
+            this.scene.start(GameOver.key);
+        });
     }
 
     addKeyInputListeners():void {
