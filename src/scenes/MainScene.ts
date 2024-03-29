@@ -58,6 +58,19 @@ export default class MainScene extends BaseScene {
         this.input.keyboard?.on('keydown-RIGHT', () => {
             this.circle.body.velocity.x = acceleration;
         });
+
+        this.input.keyboard?.on('keyup-UP', () => {
+            this.circle.body.velocity.y = 0;
+        });
+        this.input.keyboard?.on('keyup-DOWN', () => {
+            this.circle.body.velocity.y = 0;
+        });
+        this.input.keyboard?.on('keyup-LEFT', () => {
+            this.circle.body.velocity.x = 0;
+        });
+        this.input.keyboard?.on('keyup-RIGHT', () => {
+            this.circle.body.velocity.x = 0;
+        });
     }
 }
 
