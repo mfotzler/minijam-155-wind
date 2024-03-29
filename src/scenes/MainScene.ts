@@ -5,10 +5,11 @@ import Timer from "../entities/Timer";
 import Container = Phaser.GameObjects.Container;
 
 export default class MainScene extends Phaser.Scene {
+    static readonly key = 'MainScene';
     private timeSinceLastTick: number = 0;
 
     constructor() {
-        super({ key: 'MainScene'});
+        super({ key: MainScene.key});
     }
 
     preload():void {
@@ -30,13 +31,13 @@ export default class MainScene extends Phaser.Scene {
     }
 
     addKeyInputListeners():void {
-        this.input.keyboard.on('keydown-UP', () => {
+        this.input.keyboard?.on('keydown-UP', () => {
         });
-        this.input.keyboard.on('keydown-DOWN', () => {
+        this.input.keyboard?.on('keydown-DOWN', () => {
         });
-        this.input.keyboard.on('keydown-LEFT', () => {
+        this.input.keyboard?.on('keydown-LEFT', () => {
         });
-        this.input.keyboard.on('keydown-RIGHT', () => {
+        this.input.keyboard?.on('keydown-RIGHT', () => {
         });
     }
 }

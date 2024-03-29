@@ -1,8 +1,10 @@
 import * as Phaser from 'phaser';
+import MainScene from "./MainScene";
 
 export default class MainMenu extends Phaser.Scene {
+    static readonly key = 'MainMenu';
     constructor() {
-        super({ key: 'MainMenu' });
+        super({ key: MainMenu.key });
     }
 
     preload():void {
@@ -23,7 +25,7 @@ export default class MainMenu extends Phaser.Scene {
 
     private addPlayButton() {
         this.addCenteredButton(400, 'Play', () => {
-            this.scene.start('MainScene');
+            this.scene.start(MainScene.key);
         });
     }
 
