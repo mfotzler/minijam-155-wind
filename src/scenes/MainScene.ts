@@ -8,6 +8,7 @@ import Container = Phaser.GameObjects.Container;
 
 export default class MainScene extends BaseScene {
     static readonly key = 'MainScene';
+    private circle: Phaser.GameObjects.Arc;
     private timeHandler: TimeHandler = new TimeHandler();
 
     constructor() {
@@ -15,6 +16,7 @@ export default class MainScene extends BaseScene {
     }
 
     create():void {
+        this.addCircle();
         this.addKeyInputListeners();
         this.addTimer();
         this.addGameOverHandler();
@@ -36,14 +38,25 @@ export default class MainScene extends BaseScene {
         });
     }
 
+    private addCircle() {
+        let circle = this.add.circle(200, 200, 30, 0xff6699);
+        this.circle = this.physics.add.existing(circle, false);
+    }
+
     addKeyInputListeners():void {
+        const acceleration = 150;
+
         this.input.keyboard?.on('keydown-UP', () => {
+            this.circle.body.velocity.y = -acceleration;
         });
         this.input.keyboard?.on('keydown-DOWN', () => {
+            this.circle.body.velocity.y = acceleration;
         });
         this.input.keyboard?.on('keydown-LEFT', () => {
+            this.circle.body.velocity.x = -acceleration;
         });
         this.input.keyboard?.on('keydown-RIGHT', () => {
+            this.circle.body.velocity.x = acceleration;
         });
     }
 }
