@@ -22,7 +22,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
+    - run: yarn install
     - run: npm run build
     - name: Archive production artifacts
       uses: actions/upload-artifact@v4
