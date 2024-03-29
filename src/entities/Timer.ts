@@ -8,10 +8,11 @@ export default class Timer extends Container {
     private text: BitmapText;
     private isActive = true;
     private timeRemaining: number = 3;
+    public static TimerWidth: number = 300;
     constructor(scene:Phaser.Scene, x: number, y: number) {
         super(scene, x, y);
 
-        const background = scene.add.nineslice(0, 0, 'textures', 'menu-button', 300, 100, 20, 20, 20, 20);
+        const background = scene.add.nineslice(0, 0, 'textures', 'menu-button', Timer.TimerWidth, 100, 20, 20, 20, 20);
         this.add(background);
 
         this.text = scene.add.bitmapText(0, 0, 'rubik', `Time: ${this.timeRemaining}`);

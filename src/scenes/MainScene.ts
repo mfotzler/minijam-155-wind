@@ -25,7 +25,9 @@ export default class MainScene extends BaseScene {
     }
 
     private addTimer() {
-        this.add.existing<Container>(new Timer(this.scene.scene, this.renderer.width / 2, 100));
+        let x = (Timer.TimerWidth / 2) + 30;
+
+        this.add.existing<Container>(new Timer(this.scene.scene, x, 100));
     }
 
     private addGameOverHandler() {
