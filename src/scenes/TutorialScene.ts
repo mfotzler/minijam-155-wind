@@ -14,7 +14,23 @@ export default class TutorialScene extends BaseScene {
         this.addTitle();
         this.addPlayButton();
 
-        const dialogueBox = new DialogueBox(this.scene.scene, 0, this.renderer.height - 420, 'Welcome to the tutorial!');
+        const dialogueBox = new DialogueBox(this.scene.scene, 0, this.renderer.height - 420, [
+            {
+                text: 'Welcome to the tutorial!',
+                name: 'Blower-san',
+                image: 'blower-san'
+            },
+            {
+                text: 'I will guide you through the basics of the game.',
+                name: 'Blower-san',
+                image: 'blower-san'
+            },
+            {
+                text: 'Coins are falling everywhere and we need to get them to the goal',
+                name: 'Blower-san',
+                image: 'blower-san'
+            },
+        ]);
         this.add.existing<Container>(dialogueBox);
     }
 
