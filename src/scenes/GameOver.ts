@@ -11,9 +11,22 @@ export default class GameOver extends BaseScene {
     create():void {
         this.addTitle();
         this.addPlayButton();
+        this.playSound();
     }
 
     update(time: number, delta: number):void {
+    }
+
+    override preload() {
+        super.preload();
+
+        this.load.audio("game_over", "assets/game_over.mp3");
+    }
+
+    private playSound() {
+        let music = this.sound.add("game_over");
+
+        music.play();
     }
 
     private addTitle() {
