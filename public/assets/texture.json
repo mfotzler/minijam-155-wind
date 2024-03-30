@@ -28,16 +28,16 @@
       "frame": {
         "x": 500,
         "y": 0,
-        "w": 247,
-        "h": 369
+        "w": 280,
+        "h": 380
       },
       "rotated": false,
-      "trimmed": true,
+      "trimmed": false,
       "spriteSourceSize": {
-        "x": 13,
-        "y": 11,
-        "w": 247,
-        "h": 369
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 380
       },
       "sourceSize": {
         "w": 280,
@@ -144,12 +144,12 @@
         "y": 0.5
       }
     },
-    "coin-ball01": {
+    "vacuum01": {
       "frame": {
         "x": 316,
         "y": 148,
         "w": 100,
-        "h": 79
+        "h": 337
       },
       "rotated": false,
       "trimmed": false,
@@ -157,11 +157,11 @@
         "x": 0,
         "y": 0,
         "w": 100,
-        "h": 79
+        "h": 337
       },
       "sourceSize": {
         "w": 100,
-        "h": 79
+        "h": 337
       },
       "pivot": {
         "x": 0.5,
@@ -192,10 +192,82 @@
         "y": 0.5
       }
     },
-    "coin-ball02": {
+    "vacuum02": {
       "frame": {
         "x": 0,
         "y": 164,
+        "w": 100,
+        "h": 337
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 337
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 337
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "vacuum03": {
+      "frame": {
+        "x": 100,
+        "y": 164,
+        "w": 100,
+        "h": 337
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 337
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 337
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "coin-ball01": {
+      "frame": {
+        "x": 200,
+        "y": 164,
+        "w": 100,
+        "h": 79
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 79
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 79
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "coin-ball02": {
+      "frame": {
+        "x": 200,
+        "y": 243,
         "w": 100,
         "h": 79
       },
@@ -218,8 +290,8 @@
     },
     "coin-ball03": {
       "frame": {
-        "x": 100,
-        "y": 164,
+        "x": 200,
+        "y": 322,
         "w": 100,
         "h": 73
       },
@@ -239,78 +311,6 @@
         "x": 0.5,
         "y": 0.5
       }
-    },
-    "vacuum02": {
-      "frame": {
-        "x": 200,
-        "y": 164,
-        "w": 98,
-        "h": 330
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 1,
-        "y": 4,
-        "w": 98,
-        "h": 330
-      },
-      "sourceSize": {
-        "w": 100,
-        "h": 337
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "vacuum03": {
-      "frame": {
-        "x": 100,
-        "y": 237,
-        "w": 98,
-        "h": 297
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 1,
-        "y": 4,
-        "w": 98,
-        "h": 297
-      },
-      "sourceSize": {
-        "w": 100,
-        "h": 337
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "vacuum01": {
-      "frame": {
-        "x": 0,
-        "y": 243,
-        "w": 98,
-        "h": 289
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 1,
-        "y": 45,
-        "w": 98,
-        "h": 289
-      },
-      "sourceSize": {
-        "w": 100,
-        "h": 337
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
     }
   },
   "meta": {
@@ -319,8 +319,8 @@
     "image": "texture.png",
     "format": "RGBA8888",
     "size": {
-      "w": 747,
-      "h": 534
+      "w": 780,
+      "h": 501
     },
     "scale": 1
   }
