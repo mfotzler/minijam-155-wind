@@ -9,7 +9,7 @@ import Body = Phaser.Physics.Arcade.Body;
 
 export default class Vacuum extends Container {
 	private static hasCreatedAnimations = false;
-	private vacuumSprite: Sprite;
+	public vacuumSprite: Sprite;
 	keepDirection: boolean = false;
 	constructor(
 		scene: Phaser.Scene,

@@ -94,12 +94,17 @@ export default class MainScene extends BaseScene {
 			const coin = this.coinPool.get();
 			coin.setPosition(Math.random() * this.renderer.width, Math.random() * this.renderer.height);
 
-			this.physics.add.collider(coin, this.player.ball, this.growBall);
+			this.physics.add.collider(coin, this.player.ball, this.growBall.bind(this));
+			this.physics.add.collider(coin, this.vacuum.vacuumSprite, this.destroyCoin.bind(this));
 		}
 	}
 
-	growBall(coin: GameObjectWithBody) {
+	destroyCoin(coin: GameObjectWithBody) {
 		coin.destroy();
+	}
+
+	growBall(coin: GameObjectWithBody) {
+		this.destroyCoin(coin);
 
 		let scale = MessageBus.getLastMessage<number>(Messages.BallScale);
 		let growthFactor = 0.05;
