@@ -43,6 +43,6 @@ export default class Goal extends Container {
 
 		let growthScore = (scale - 1) * 10 * perGrowthMultiplier;
 
-		return baseScore + growthScore;
+		return Math.floor(baseScore + growthScore);
 	}
 }

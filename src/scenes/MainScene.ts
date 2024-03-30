@@ -11,6 +11,7 @@ import Group = Phaser.GameObjects.Group;
 import Coin from '../entities/Coin';
 import GameObjectWithBody = Phaser.Types.Physics.Arcade.GameObjectWithBody;
 import Goal from '../entities/Goal';
+import ScoreBox from '../entities/ScoreBox';
 
 export default class MainScene extends BaseScene {
 	static readonly key = 'MainScene';
@@ -20,6 +21,7 @@ export default class MainScene extends BaseScene {
 	private coinPool: Group;
 	private music: Phaser.Sound.BaseSound;
 	private goal: Goal;
+	private score;
 
 	constructor() {
 		super({ key: MainScene.key });
@@ -36,6 +38,7 @@ export default class MainScene extends BaseScene {
 	create(): void {
 		this.addCircle();
 		this.addTimer();
+		this.addScoreBox();
 		this.addGameOverHandler();
 		this.playSound();
 		this.addGoal();
@@ -48,6 +51,12 @@ export default class MainScene extends BaseScene {
 
 		this.initializeMapAndCameras();
 		this.initializeBallScale();
+	}
+
+	private addScoreBox() {
+		let x = ScoreBox.ScoreBoxWidth / 2 + 30;
+
+		this.add.existing<Container>(new ScoreBox(this, x, 220));
 	}
 
 	private addGoal() {
