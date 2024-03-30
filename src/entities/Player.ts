@@ -39,11 +39,6 @@ export default class Player {
     this.RotatePlayerSprite();
     this.moveBall();
     this.decelerateBall();
-    // this.scene.physics.collide(
-    //   this.collisionArc,
-    //   this.circle,
-    //   this.moveCircle.bind(this),
-    // );
   }
 
   private handleMouseEvents() {
@@ -86,16 +81,6 @@ export default class Player {
 
     const moveToZero = (value: number) => {
       return value / decelerationFactor;
-      // if (value === 0) return value;
-      //
-      // let newValue: number;
-      // if (value > 0) newValue = value - decelerationFactor;
-      // else newValue = value + decelerationFactor;
-      //
-      // if (newValue < decelerationFactor || newValue > -decelerationFactor)
-      //   newValue = 0;
-      //
-      // return newValue;
     };
 
     this.ball.body.velocity.x = moveToZero(this.ball.body.velocity.x);
@@ -146,28 +131,5 @@ export default class Player {
 
     let physics = this.scene.physics.add.existing(this.collisionArc);
     (physics.body as Body).setCircle(35);
-  }
-
-  private moveCircle() {
-    let isLeftOfPlayer = this.ball.x > this.sprite.x;
-    let isBelowPlayer = this.ball.y > this.sprite.y;
-
-    let acceleration = 120;
-
-    let isWithinXTolerance = this.isWithinTolerance(this.ball.x, this.sprite.x);
-    let isWithinYTolerance = this.isWithinTolerance(this.ball.y, this.sprite.y);
-
-    if (isLeftOfPlayer && !isWithinXTolerance)
-      this.ball.body.velocity.x += acceleration;
-    else if (!isWithinXTolerance) this.ball.body.velocity.x -= acceleration;
-    if (isBelowPlayer && !isWithinYTolerance)
-      this.ball.body.velocity.y += acceleration;
-    else if (!isWithinYTolerance) this.ball.body.velocity.y -= acceleration;
-  }
-
-  private isWithinTolerance(coord: number, coord2: number) {
-    let tolerance = 5;
-
-    return Math.abs(coord2 - coord) < 5;
   }
 }
