@@ -10,6 +10,7 @@ import Container = Phaser.GameObjects.Container;
 import Group = Phaser.GameObjects.Group;
 import Coin from '../entities/Coin';
 import GameObjectWithBody = Phaser.Types.Physics.Arcade.GameObjectWithBody;
+import Goal from '../entities/Goal';
 
 export default class MainScene extends BaseScene {
 	static readonly key = 'MainScene';
@@ -18,6 +19,7 @@ export default class MainScene extends BaseScene {
 	private wallLayer: Phaser.Tilemaps.TilemapLayer;
 	private coinPool: Group;
 	private music: Phaser.Sound.BaseSound;
+	private goal: Goal;
 
 	constructor() {
 		super({ key: MainScene.key });
@@ -36,6 +38,7 @@ export default class MainScene extends BaseScene {
 		this.addTimer();
 		this.addGameOverHandler();
 		this.playSound();
+		this.addGoal();
 
 		this.add.existing<Container>(new Vacuum(this.scene.scene, 500, 400));
 		this.coinPool = this.add.group({
@@ -45,6 +48,10 @@ export default class MainScene extends BaseScene {
 
 		this.initializeMapAndCameras();
 		this.initializeBallScale();
+	}
+
+	private addGoal() {
+		this.goal = new Goal(this, 1800, 550, this.player.ball);
 	}
 
 	private playSound() {
@@ -70,6 +77,7 @@ export default class MainScene extends BaseScene {
 	update(time: number, delta: number): void {
 		this.timeHandler.tick(delta);
 		this.player.update();
+		this.goal.update();
 
 		if (this.coinPool.children.getArray().length < 50) {
 			const coin = this.coinPool.get();

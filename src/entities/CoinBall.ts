@@ -7,6 +7,8 @@ import { Messages } from '../messageBus/Messages';
 
 export default class CoinBall extends Container {
 	private static hasCreatedAnimations = false;
+	private readonly initialX: number;
+	private readonly initialY: number;
 	constructor(
 		scene: Phaser.Scene,
 		x: number,
@@ -14,6 +16,9 @@ export default class CoinBall extends Container {
 		private collisionArc: Arc
 	) {
 		super(scene, x, y);
+
+		this.initialY = y;
+		this.initialX = x;
 
 		if (!CoinBall.hasCreatedAnimations) {
 			scene.anims.create({
@@ -45,6 +50,12 @@ export default class CoinBall extends Container {
 	public update() {
 		this.moveBall();
 		this.decelerateBall();
+	}
+
+	public resetBall() {
+		MessageBus.sendMessage(Messages.BallScale, 1);
+		this.x = this.initialX;
+		this.y = this.initialY;
 	}
 
 	private moveBall() {
