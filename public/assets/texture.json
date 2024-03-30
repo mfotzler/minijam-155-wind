@@ -48,48 +48,48 @@
         "y": 0.5
       }
     },
-    "menu-button": {
+    "vacuum": {
       "frame": {
         "x": 0,
         "y": 100,
-        "w": 146,
-        "h": 48
+        "w": 300,
+        "h": 331
       },
       "rotated": false,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
         "y": 0,
-        "w": 146,
-        "h": 48
+        "w": 300,
+        "h": 331
       },
       "sourceSize": {
-        "w": 146,
-        "h": 48
+        "w": 300,
+        "h": 331
       },
       "pivot": {
         "x": 0.5,
         "y": 0.5
       }
     },
-    "lil-blower-san": {
+    "menu-button": {
       "frame": {
-        "x": 146,
+        "x": 300,
         "y": 100,
-        "w": 100,
-        "h": 49
+        "w": 146,
+        "h": 48
       },
       "rotated": false,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
         "y": 0,
-        "w": 100,
-        "h": 49
+        "w": 146,
+        "h": 48
       },
       "sourceSize": {
-        "w": 100,
-        "h": 49
+        "w": 146,
+        "h": 48
       },
       "pivot": {
         "x": 0.5,
@@ -98,8 +98,8 @@
     },
     "coin": {
       "frame": {
-        "x": 0,
-        "y": 148,
+        "x": 446,
+        "y": 100,
         "w": 50,
         "h": 50
       },
@@ -114,6 +114,54 @@
       "sourceSize": {
         "w": 50,
         "h": 50
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "lil-blower-san": {
+      "frame": {
+        "x": 300,
+        "y": 148,
+        "w": 100,
+        "h": 49
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 49
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "coin-ball": {
+      "frame": {
+        "x": 800,
+        "y": 0,
+        "w": 300,
+        "h": 76
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 76
       },
       "pivot": {
         "x": 0.5,
@@ -127,8 +175,8 @@
     "image": "texture.png",
     "format": "RGBA8888",
     "size": {
-      "w": 800,
-      "h": 378
+      "w": 1100,
+      "h": 431
     },
     "scale": 1
   }
