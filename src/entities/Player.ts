@@ -6,10 +6,13 @@ import Body = Phaser.Physics.Arcade.Body;
 import Container = Phaser.GameObjects.Container;
 
 export default class Player {
+  private static hasCreatedAnimations = false;
+
   public ball: CoinBall;
   public sprite: Sprite;
   public collisionArc: Arc;
   private moveDirect: Arc;
+
   constructor(
     private scene: Phaser.Scene,
     x: number,
@@ -22,8 +25,18 @@ export default class Player {
   }
 
   private initializeSprite(x: number, y: number) {
-    this.sprite = this.scene.add.sprite(x, y, "textures", "lil-blower-san");
-    this.sprite.scale = 1;
+    if(!Player.hasCreatedAnimations) {
+        this.scene.anims.create({
+            key: 'lil-blower-san-walk',
+            frames: this.scene.anims.generateFrameNames('textures', {prefix: 'lil-blower-san', start: 1, end: 2, zeroPad: 2}),
+            frameRate: 4,
+            repeat: -1
+        });
+        Player.hasCreatedAnimations = true;
+    }
+    this.sprite = this.scene.add.sprite(x, y, "textures")
+        .play('lil-blower-san-walk');
+    this.sprite.scale = 5;
 
     this.scene.physics.add.existing(this.sprite, false);
   }
