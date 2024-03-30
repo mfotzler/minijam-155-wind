@@ -1,4 +1,5 @@
 export const Messages = {
 	SecondElapsed: 'SecondElapsed',
-	GameOver: 'GameOver'
+	GameOver: 'GameOver',
+	BallScale: 'BallScale'
 };

@@ -9,6 +9,7 @@ import Player from '../entities/Player';
 import Container = Phaser.GameObjects.Container;
 import Group = Phaser.GameObjects.Group;
 import Coin from '../entities/Coin';
+import GameObjectWithBody = Phaser.Types.Physics.Arcade.GameObjectWithBody;
 
 export default class MainScene extends BaseScene {
 	static readonly key = 'MainScene';
@@ -40,6 +41,11 @@ export default class MainScene extends BaseScene {
 		});
 
 		this.initializeMapAndCameras();
+		this.initializeBallScale();
+	}
+
+	private initializeBallScale() {
+		MessageBus.sendMessage(Messages.BallScale, 1);
 	}
 
 	private initializeMapAndCameras(): void {
@@ -60,12 +66,17 @@ export default class MainScene extends BaseScene {
 			const coin = this.coinPool.get();
 			coin.setPosition(Math.random() * this.renderer.width, Math.random() * this.renderer.height);
 
-			this.physics.add.collider(coin, this.player.ball, this.callback);
+			this.physics.add.collider(coin, this.player.ball, this.growBall);
 		}
 	}
 
-	callback() {
-		console.log('me? gongaga');
+	growBall(coin: GameObjectWithBody) {
+		coin.destroy();
+
+		let scale = MessageBus.getLastMessage<number>(Messages.BallScale);
+		let growthFactor = 0.05;
+
+		MessageBus.sendMessage(Messages.BallScale, scale + growthFactor);
 	}
 
 	private addTimer() {
