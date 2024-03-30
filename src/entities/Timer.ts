@@ -7,7 +7,7 @@ import Container = Phaser.GameObjects.Container;
 export default class Timer extends Container {
     private text: BitmapText;
     private isActive = true;
-    private timeRemaining: number = 3;
+    private timeRemaining: number = 60;
     public static TimerWidth: number = 300;
     constructor(scene:Phaser.Scene, x: number, y: number) {
         super(scene, x, y);

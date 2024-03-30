@@ -4,6 +4,8 @@ import {Messages} from "../messageBus/Messages";
 import Timer from "../entities/Timer";
 import GameOver from "./GameOver";
 import BaseScene from "./BaseScene";
+import CoinBall from "../entities/CoinBall";
+import Vacuum from "../entities/Vacuum";
 import Container = Phaser.GameObjects.Container;
 
 export default class MainScene extends BaseScene {
@@ -20,6 +22,9 @@ export default class MainScene extends BaseScene {
         this.addKeyInputListeners();
         this.addTimer();
         this.addGameOverHandler();
+
+        this.add.existing<Container>(new CoinBall(this.scene.scene, 400, 400));
+        this.add.existing<Container>(new Vacuum(this.scene.scene, 500, 400));
     }
 
     update(time: number, delta: number):void {
