@@ -28,20 +28,20 @@
       "frame": {
         "x": 500,
         "y": 0,
-        "w": 300,
-        "h": 378
+        "w": 247,
+        "h": 369
       },
       "rotated": false,
-      "trimmed": false,
+      "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 300,
-        "h": 378
+        "x": 13,
+        "y": 11,
+        "w": 247,
+        "h": 369
       },
       "sourceSize": {
-        "w": 300,
-        "h": 378
+        "w": 280,
+        "h": 380
       },
       "pivot": {
         "x": 0.5,
@@ -271,7 +271,7 @@
     "image": "texture.png",
     "format": "RGBA8888",
     "size": {
-      "w": 800,
+      "w": 747,
       "h": 479
     },
     "scale": 1
