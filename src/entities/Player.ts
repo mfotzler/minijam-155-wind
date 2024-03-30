@@ -37,8 +37,8 @@ export default class Player {
     this.handleMouseEvents();
     this.setArcLocation();
     this.RotatePlayerSprite();
-    // this.moveBall();
-    // this.decelerateBall();
+    this.moveBall();
+    this.decelerateBall();
     // this.scene.physics.collide(
     //   this.collisionArc,
     //   this.circle,
@@ -82,14 +82,20 @@ export default class Player {
   }
 
   private decelerateBall() {
+    const decelerationFactor = 1.01;
+
     const moveToZero = (value: number) => {
-      let newValue: number;
-      if (value > 0) newValue = value - 1;
-      else newValue = value + 1;
-
-      if (newValue < 1 || newValue > -1) newValue = 0;
-
-      return newValue;
+      return value / decelerationFactor;
+      // if (value === 0) return value;
+      //
+      // let newValue: number;
+      // if (value > 0) newValue = value - decelerationFactor;
+      // else newValue = value + decelerationFactor;
+      //
+      // if (newValue < decelerationFactor || newValue > -decelerationFactor)
+      //   newValue = 0;
+      //
+      // return newValue;
     };
 
     this.ball.body.velocity.x = moveToZero(this.ball.body.velocity.x);
@@ -106,8 +112,8 @@ export default class Player {
       .subtract(this.collisionArc.body["center"]);
     force
       .copy(distance)
-      .setLength(350000 / distance.lengthSq())
-      .limit(10000);
+      .setLength(85000 / distance.lengthSq())
+      .limit(10);
     acceleration.copy(force).scale(1 / this.ball.body.mass);
     this.ball.body.velocity["add"](acceleration);
   }
