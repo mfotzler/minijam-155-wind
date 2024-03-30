@@ -3,7 +3,6 @@ import CoinBall from "./CoinBall";
 import Sprite = Phaser.GameObjects.Sprite;
 import Arc = Phaser.GameObjects.Arc;
 import Body = Phaser.Physics.Arcade.Body;
-import Vector2 = Phaser.Math.Vector2;
 import Container = Phaser.GameObjects.Container;
 
 export default class Player {
@@ -18,8 +17,8 @@ export default class Player {
   ) {
     this.initializeSprite(x, y);
     this.initializeMoveLocation();
-    this.initializeBall(x, y);
     this.initializeArc(x, y);
+    this.initializeBall(x, y);
   }
 
   private initializeSprite(x: number, y: number) {
@@ -37,8 +36,7 @@ export default class Player {
     this.handleMouseEvents();
     this.setArcLocation();
     this.RotatePlayerSprite();
-    this.moveBall();
-    this.decelerateBall();
+    this.ball.update();
   }
 
   private handleMouseEvents() {
@@ -76,35 +74,8 @@ export default class Player {
     return Math.atan2(ballY - spriteY, ballX - spriteX);
   }
 
-  private decelerateBall() {
-    const decelerationFactor = 1.01;
-
-    const moveToZero = (value: number) => {
-      return value / decelerationFactor;
-    };
-
-    this.ball.body.velocity.x = moveToZero(this.ball.body.velocity.x);
-    this.ball.body.velocity.y = moveToZero(this.ball.body.velocity.y);
-  }
-
-  private moveBall() {
-    const distance = new Vector2();
-    const force = new Vector2();
-    const acceleration = new Vector2();
-
-    distance
-      .copy(this.ball.body["center"])
-      .subtract(this.collisionArc.body["center"]);
-    force
-      .copy(distance)
-      .setLength(85000 / distance.lengthSq())
-      .limit(10);
-    acceleration.copy(force).scale(1 / this.ball.body.mass);
-    this.ball.body.velocity["add"](acceleration);
-  }
-
   private initializeBall(x: number, y: number) {
-    this.ball = new CoinBall(this.scene, x + 400, y + 105);
+    this.ball = new CoinBall(this.scene, x + 400, y + 105, this.collisionArc);
 
     this.scene.add.existing<Container>(this.ball);
     this.scene.physics.add.existing(this.ball, false);

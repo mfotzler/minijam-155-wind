@@ -31,7 +31,6 @@ export default class MainScene extends BaseScene {
         this.addTimer();
         this.addGameOverHandler();
 
-        this.add.existing<Container>(new CoinBall(this.scene.scene, 400, 400));
         this.add.existing<Container>(new Vacuum(this.scene.scene, 500, 400));
 
         this.initializeMapAndCameras();
