@@ -1,10 +1,9 @@
 import * as Phaser from "phaser";
-
+import CoinBall from "./CoinBall";
 import Sprite = Phaser.GameObjects.Sprite;
 import Arc = Phaser.GameObjects.Arc;
 import Body = Phaser.Physics.Arcade.Body;
 import Vector2 = Phaser.Math.Vector2;
-import CoinBall from "./CoinBall";
 import Container = Phaser.GameObjects.Container;
 
 export default class Player {
@@ -35,24 +34,51 @@ export default class Player {
   }
 
   update() {
-    if (this.scene.input.mousePointer.isDown) {
-      this.moveDirect.x = this.scene.input.mousePointer.x;
-      this.moveDirect.y = this.scene.input.mousePointer.y;
-
-      this.scene.physics.accelerateToObject(this.sprite, this.moveDirect, 250);
-    } else {
-      this.sprite.body.velocity.x = 0;
-      this.sprite.body.velocity.y = 0;
-    }
+    this.handleMouseEvents();
     this.setArcLocation();
-
-    this.moveBall();
+    this.RotatePlayerSprite();
+    // this.moveBall();
     // this.decelerateBall();
     // this.scene.physics.collide(
     //   this.collisionArc,
     //   this.circle,
     //   this.moveCircle.bind(this),
     // );
+  }
+
+  private handleMouseEvents() {
+    if (this.scene.input.mousePointer.isDown) {
+      this.movePlayerToCursor();
+    } else {
+      this.sprite.body.velocity.x = 0;
+      this.sprite.body.velocity.y = 0;
+    }
+  }
+
+  private movePlayerToCursor() {
+    this.moveDirect.x = this.scene.input.mousePointer.x;
+    this.moveDirect.y = this.scene.input.mousePointer.y;
+
+    this.scene.physics.accelerateToObject(this.sprite, this.moveDirect, 250);
+  }
+
+  private RotatePlayerSprite() {
+    let angle = this.getAngleOfAttack();
+    let offset = -0.15;
+
+    let rotation = angle + offset;
+
+    this.sprite.setRotation(rotation);
+  }
+
+  private getAngleOfAttack() {
+    let ballX = (this.ball.body as Body).center.x;
+    let ballY = (this.ball.body as Body).center.y;
+
+    let spriteX = (this.sprite.body as Body).center.x;
+    let spriteY = (this.sprite.body as Body).center.y;
+
+    return Math.atan2(ballY - spriteY, ballX - spriteX);
   }
 
   private decelerateBall() {
@@ -75,11 +101,13 @@ export default class Player {
     const force = new Vector2();
     const acceleration = new Vector2();
 
-    distance.copy(this.ball.body["center"]);
+    distance
+      .copy(this.ball.body["center"])
+      .subtract(this.collisionArc.body["center"]);
     force
       .copy(distance)
-      .setLength(200000 / distance.lengthSq())
-      .limit(1000);
+      .setLength(350000 / distance.lengthSq())
+      .limit(10000);
     acceleration.copy(force).scale(1 / this.ball.body.mass);
     this.ball.body.velocity["add"](acceleration);
   }
@@ -96,15 +124,19 @@ export default class Player {
   }
 
   private setArcLocation() {
-    let offsetX = 15;
-    let offsetY = 15;
+    let angle = this.getAngleOfAttack();
 
-    this.collisionArc.x = this.sprite.x + offsetX;
-    this.collisionArc.y = this.sprite.y + offsetY;
+    let magnitude = this.sprite.width / 2;
+
+    const collisionY = Math.sin(angle) * magnitude;
+    const collisionX = Math.cos(angle) * magnitude;
+
+    this.collisionArc.x = collisionX + (this.sprite.body as Body).center.x;
+    this.collisionArc.y = collisionY + (this.sprite.body as Body).center.y;
   }
 
   private initializeArc(x: number, y: number) {
-    this.collisionArc = this.scene.add.arc(x, y, 10, 0, 25, false, 0xff0011);
+    this.collisionArc = this.scene.add.circle(x, y, 35, 0, 0);
 
     let physics = this.scene.physics.add.existing(this.collisionArc);
     (physics.body as Body).setCircle(35);
