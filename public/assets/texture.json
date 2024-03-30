@@ -71,6 +71,30 @@
         "x": 0.5,
         "y": 0.5
       }
+    },
+    "lil-blower-san": {
+      "frame": {
+        "x": 146,
+        "y": 100,
+        "w": 100,
+        "h": 49
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 49
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
     }
   },
   "meta": {
