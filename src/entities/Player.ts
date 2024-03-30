@@ -4,9 +4,11 @@ import Sprite = Phaser.GameObjects.Sprite;
 import Arc = Phaser.GameObjects.Arc;
 import Body = Phaser.Physics.Arcade.Body;
 import Vector2 = Phaser.Math.Vector2;
+import CoinBall from "./CoinBall";
+import Container = Phaser.GameObjects.Container;
 
 export default class Player {
-  public circle: Arc;
+  public ball: CoinBall;
   public sprite: Sprite;
   public collisionArc: Arc;
   private moveDirect: Arc;
@@ -64,8 +66,8 @@ export default class Player {
       return newValue;
     };
 
-    this.circle.body.velocity.x = moveToZero(this.circle.body.velocity.x);
-    this.circle.body.velocity.y = moveToZero(this.circle.body.velocity.y);
+    this.ball.body.velocity.x = moveToZero(this.ball.body.velocity.x);
+    this.ball.body.velocity.y = moveToZero(this.ball.body.velocity.y);
   }
 
   private moveBall() {
@@ -73,18 +75,24 @@ export default class Player {
     const force = new Vector2();
     const acceleration = new Vector2();
 
-    distance.copy(this.circle.body["center"]);
+    distance.copy(this.ball.body["center"]);
     force
       .copy(distance)
       .setLength(200000 / distance.lengthSq())
       .limit(1000);
-    acceleration.copy(force).scale(1 / this.circle.body.mass);
-    this.circle.body.velocity["add"](acceleration);
+    acceleration.copy(force).scale(1 / this.ball.body.mass);
+    this.ball.body.velocity["add"](acceleration);
   }
 
   private initializeBall(x: number, y: number) {
-    this.circle = this.scene.add.circle(x + 400, y + 105, 35, 0xff6699);
-    this.scene.physics.add.existing(this.circle, false);
+    this.ball = new CoinBall(this.scene, x + 400, y + 105);
+
+    this.scene.add.existing<Container>(this.ball);
+    this.scene.physics.add.existing(this.ball, false);
+
+    let offset = -35;
+    (this.ball.body as Body).setOffset(offset, offset);
+    (this.ball.body as Body).setCircle(40);
   }
 
   private setArcLocation() {
@@ -103,26 +111,20 @@ export default class Player {
   }
 
   private moveCircle() {
-    let isLeftOfPlayer = this.circle.x > this.sprite.x;
-    let isBelowPlayer = this.circle.y > this.sprite.y;
+    let isLeftOfPlayer = this.ball.x > this.sprite.x;
+    let isBelowPlayer = this.ball.y > this.sprite.y;
 
     let acceleration = 120;
 
-    let isWithinXTolerance = this.isWithinTolerance(
-      this.circle.x,
-      this.sprite.x,
-    );
-    let isWithinYTolerance = this.isWithinTolerance(
-      this.circle.y,
-      this.sprite.y,
-    );
+    let isWithinXTolerance = this.isWithinTolerance(this.ball.x, this.sprite.x);
+    let isWithinYTolerance = this.isWithinTolerance(this.ball.y, this.sprite.y);
 
     if (isLeftOfPlayer && !isWithinXTolerance)
-      this.circle.body.velocity.x += acceleration;
-    else if (!isWithinXTolerance) this.circle.body.velocity.x -= acceleration;
+      this.ball.body.velocity.x += acceleration;
+    else if (!isWithinXTolerance) this.ball.body.velocity.x -= acceleration;
     if (isBelowPlayer && !isWithinYTolerance)
-      this.circle.body.velocity.y += acceleration;
-    else if (!isWithinYTolerance) this.circle.body.velocity.y -= acceleration;
+      this.ball.body.velocity.y += acceleration;
+    else if (!isWithinYTolerance) this.ball.body.velocity.y -= acceleration;
   }
 
   private isWithinTolerance(coord: number, coord2: number) {
