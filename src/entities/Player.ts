@@ -36,7 +36,7 @@ export default class Player {
     }
     this.sprite = this.scene.add.sprite(x, y, "textures")
         .play('lil-blower-san-walk');
-    this.sprite.scale = 5;
+    this.sprite.scale = 1;
 
     this.scene.physics.add.existing(this.sprite, false);
   }
