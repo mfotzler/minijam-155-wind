@@ -1,14 +1,14 @@
-import UIHelpers from '../UIHelpers';
 import BaseScene from './BaseScene';
-import MainMenu from './MainMenu';
+import UIHelpers from '../UIHelpers';
+import MainScene from './MainScene';
 import DialogueBox from '../entities/DialogueBox';
 import Container = Phaser.GameObjects.Container;
 
-export default class TutorialScene extends BaseScene {
-	static readonly key = 'Tutorial';
+export default class GameWon extends BaseScene {
+	static readonly key = 'GameWon';
 	private music: Phaser.Sound.BaseSound;
 	constructor() {
-		super({ key: TutorialScene.key });
+		super({ key: GameWon.key });
 	}
 
 	create(): void {
@@ -16,27 +16,30 @@ export default class TutorialScene extends BaseScene {
 		this.addPlayButton();
 		this.playSound();
 
-		const dialogueBox = new DialogueBox(this.scene.scene, 0, this.renderer.height - 420, [
+		const dialogueBox = new DialogueBox(this, 0, this.renderer.height - 420, [
 			{
-				text: 'Welcome to the tutorial!',
+				text: 'You did it!  I have enough money now!!! :)',
 				name: 'Blower-san',
 				image: 'lil-blower-san01'
 			},
 			{
-				text: 'I will guide you through the basics of the game.',
+				text: 'Now I can reveal my true form...',
 				name: 'Blower-san',
 				image: 'lil-blower-san01'
 			},
 			{
-				text: 'Coins are falling everywhere and we need to get them to the goal',
+				text: 'Surprised?  I know, I get that look a lot.',
 				name: 'Blower-san',
-				image: 'lil-blower-san01'
+				image: 'blower-san'
+			},
+			{
+				text: 'Maybe try to collect even more coins next time!',
+				name: 'Blower-san',
+				image: 'blower-san'
 			}
 		]);
 		this.add.existing<Container>(dialogueBox);
 	}
-
-	update(time: number, delta: number): void {}
 
 	override preload() {
 		super.preload();
@@ -51,13 +54,14 @@ export default class TutorialScene extends BaseScene {
 	}
 
 	private addTitle() {
-		this.add.bitmapText(this.game.renderer.width / 2, 250, 'rubik', 'Tutorial').setOrigin(0.5, 0.5);
+		this.add
+			.bitmapText(this.game.renderer.width / 2, 250, 'rubik', 'You win !!!')
+			.setOrigin(0.5, 0.5);
 	}
 
 	private addPlayButton() {
-		UIHelpers.addCenteredButton(this, 400, 'Main Menu', () => {
-			this.music.stop();
-			this.scene.start(MainMenu.key);
+		UIHelpers.addCenteredButton(this, 400, 'Play Again', () => {
+			this.scene.start(MainScene.key);
 		});
 	}
 }

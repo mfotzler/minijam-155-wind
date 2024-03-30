@@ -12,9 +12,11 @@ import Coin from '../entities/Coin';
 import GameObjectWithBody = Phaser.Types.Physics.Arcade.GameObjectWithBody;
 import Goal from '../entities/Goal';
 import ScoreBox from '../entities/ScoreBox';
+import GameWon from './GameWon';
 
 export default class MainScene extends BaseScene {
 	static readonly key = 'MainScene';
+	static readonly scoreToBeat = 1000;
 	private player: Player;
 	private timeHandler: TimeHandler = new TimeHandler();
 	private wallLayer: Phaser.Tilemaps.TilemapLayer;
@@ -121,7 +123,12 @@ export default class MainScene extends BaseScene {
 	private addGameOverHandler() {
 		MessageBus.subscribe<void>(Messages.GameOver, () => {
 			this.music.stop();
-			this.scene.start(GameOver.key);
+
+			let score = MessageBus.getLastMessage<number>(Messages.PlayerScore) ?? 0;
+
+			let key = score > MainScene.scoreToBeat ? GameWon.key : GameOver.key;
+
+			this.scene.start(key);
 		});
 	}
 
