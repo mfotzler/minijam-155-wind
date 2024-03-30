@@ -21,7 +21,7 @@ export default class MainScene extends BaseScene {
 	private coinPool: Group;
 	private music: Phaser.Sound.BaseSound;
 	private goal: Goal;
-	private score;
+	private vacuum: Vacuum;
 
 	constructor() {
 		super({ key: MainScene.key });
@@ -42,14 +42,15 @@ export default class MainScene extends BaseScene {
 		this.addGameOverHandler();
 		this.playSound();
 		this.addGoal();
+		this.initializeMapAndCameras();
+		this.vacuum = new Vacuum(this.scene.scene, 500, 400, this.player.ball, this.wallLayer);
+		this.add.existing<Container>(this.vacuum);
 
-		this.add.existing<Container>(new Vacuum(this.scene.scene, 500, 400));
 		this.coinPool = this.add.group({
 			classType: Coin,
 			max: 50
 		});
 
-		this.initializeMapAndCameras();
 		this.initializeBallScale();
 	}
 
@@ -87,6 +88,7 @@ export default class MainScene extends BaseScene {
 		this.timeHandler.tick(delta);
 		this.player.update();
 		this.goal.update();
+		this.vacuum.update();
 
 		if (this.coinPool.children.getArray().length < 50) {
 			const coin = this.coinPool.get();
