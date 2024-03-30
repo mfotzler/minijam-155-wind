@@ -17,6 +17,7 @@ export default class MainScene extends BaseScene {
 	private timeHandler: TimeHandler = new TimeHandler();
 	private wallLayer: Phaser.Tilemaps.TilemapLayer;
 	private coinPool: Group;
+	private music: Phaser.Sound.BaseSound;
 
 	constructor() {
 		super({ key: MainScene.key });
@@ -27,12 +28,14 @@ export default class MainScene extends BaseScene {
 
 		this.load.tilemapTiledJSON('map1', 'assets/map1.json');
 		this.load.image('tiles', 'assets/wall.png');
+		this.load.audio('game_background', 'assets/game_background.mp3');
 	}
 
 	create(): void {
 		this.addCircle();
 		this.addTimer();
 		this.addGameOverHandler();
+		this.playSound();
 
 		this.add.existing<Container>(new Vacuum(this.scene.scene, 500, 400));
 		this.coinPool = this.add.group({
@@ -42,6 +45,12 @@ export default class MainScene extends BaseScene {
 
 		this.initializeMapAndCameras();
 		this.initializeBallScale();
+	}
+
+	private playSound() {
+		this.music = this.sound.add('game_background');
+
+		this.music.play({ loop: true });
 	}
 
 	private initializeBallScale() {
@@ -87,6 +96,7 @@ export default class MainScene extends BaseScene {
 
 	private addGameOverHandler() {
 		MessageBus.subscribe<void>(Messages.GameOver, () => {
+			this.music.stop();
 			this.scene.start(GameOver.key);
 		});
 	}
