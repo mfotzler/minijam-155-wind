@@ -25,11 +25,14 @@ export default class CoinBall extends Container {
 	private readonly initialX: number;
 	private readonly initialY: number;
 	ballSprite: Sprite;
+	distance: Vector2;
+	force: Vector2;
+	acceleration: Vector2;
 	constructor(
 		scene: Phaser.Scene,
 		x: number,
 		y: number,
-		private collisionArc: Arc
+		private collisionArc: Arc,
 	) {
 		super(scene, x, y);
 
@@ -42,6 +45,10 @@ export default class CoinBall extends Container {
 			this.createBallAnimal(scene, 'l');
 			CoinBall.hasCreatedAnimations = true;
 		}
+
+		this.distance = new Vector2();
+		this.force = new Vector2();
+		this.acceleration = new Vector2();
 
 		this.initializeMessageBus();
 		this.ballSprite = scene.add.sprite(0, 0, 'textures').play('roll-s');
@@ -106,17 +113,14 @@ export default class CoinBall extends Container {
 	}
 
 	private moveBall() {
-		const distance = new Vector2();
-		const force = new Vector2();
-		const acceleration = new Vector2();
 
-		distance.copy(this.body['center']).subtract(this.collisionArc.body['center']);
-		force
-			.copy(distance)
-			.setLength(85000 / distance.lengthSq())
+		this.distance.copy(this.body['center']).subtract(this.collisionArc.body['center']);
+		this.force
+			.copy(this.distance)
+			.setLength(85000 / this.distance.lengthSq())
 			.limit(10);
-		acceleration.copy(force).scale(1 / this.body.mass);
-		this.body.velocity['add'](acceleration);
+			this.acceleration.copy(this.force).scale(1 / this.body.mass);
+		this.body.velocity['add'](this.acceleration);
 	}
 
 	private RotateBallSprite() {
