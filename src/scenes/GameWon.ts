@@ -55,11 +55,11 @@ export default class GameWon extends BaseScene {
 	override preload() {
 		super.preload();
 
-		this.load.audio('blower_san_theme', 'assets/blower_san_theme.mp3');
+		this.load.audio('big_blower_san_theme', 'assets/blower_san_theme.mp3');
 	}
 
 	private playSound() {
-		this.music = this.sound.add('blower_san_theme');
+		this.music = this.sound.add('big_blower_san_theme');
 
 		this.music.play({ loop: true });
 	}

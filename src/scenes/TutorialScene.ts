@@ -62,12 +62,12 @@ export default class TutorialScene extends BaseScene {
 	override preload() {
 		super.preload();
 
-		this.load.audio('blower_san_theme', 'assets/lil_blower_san_theme.mp3');
+		this.load.audio('lil_blower_san_theme', 'assets/lil_blower_san_theme.mp3');
 		this.load.image('tutorial-graphic', 'assets/tutorial.png');
 	}
 
 	private playSound() {
-		this.music = this.sound.add('blower_san_theme');
+		this.music = this.sound.add('lil_blower_san_theme');
 
 		this.music.play({ loop: true });
 	}
