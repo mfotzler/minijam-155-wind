@@ -19,17 +19,31 @@ export default class TutorialScene extends BaseScene {
 
 		const dialogueBox = new DialogueBox(this.scene.scene, 0, this.renderer.height - 420, [
 			{
-				text: 'Welcome to the tutorial!',
+				text:
+					"Greetings! Allow me to introduce myself as Lil' Blower-san! I'm in dire need of " +
+					'\n your assistance to gather up these coins that have mysteriously started ' +
+					'\n falling from the sky!',
 				name: 'Blower-san',
 				image: 'lil-blower-san01'
 			},
 			{
-				text: 'I will guide you through the basics of the game.',
+				text:
+					'Harness my breezy powers to maneuver the coin ball. Simply direct it towards' +
+					'\n coins to incorporate them into your coin empire!',
 				name: 'Blower-san',
 				image: 'lil-blower-san01'
 			},
 			{
-				text: 'Coins are falling everywhere and we need to get them to the goal',
+				text:
+					"Once you've amassed your coin hoard, guide the ball to the designated " +
+					'\n goal hole to secure those valuable points!',
+				name: 'Blower-san',
+				image: 'lil-blower-san01'
+			},
+			{
+				text:
+					"Strive to accumulate as many points as possible, and perhaps I'll unveil a" +
+					'\n delightful surprise. Best of luck!',
 				name: 'Blower-san',
 				image: 'lil-blower-san01'
 			}
