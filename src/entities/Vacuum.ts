@@ -27,7 +27,7 @@ export default class Vacuum extends Container {
 				frames: scene.anims.generateFrameNames('textures', {
 					prefix: 'vacuum',
 					start: 1,
-					end: 3,
+					end: 2,
 					zeroPad: 2
 				}),
 				frameRate: 3,
@@ -37,9 +37,9 @@ export default class Vacuum extends Container {
 		}
 
 		this.vacuumSprite = scene.add.sprite(0, 0, 'textures').play('vacuum');
-		this.vacuumSprite.scale = 0.4;
+		this.vacuumSprite.scale = 1.5;
 		this.scene.physics.add.existing(this.vacuumSprite);
-		this.vacuumSprite.body['scale'] = 0.4;
+		this.vacuumSprite.body['scale'] = 1.5;
 		this.add(this.vacuumSprite);
 		this.moveInARandomDirection();
 		this.scene.physics.add.collider(this.vacuumSprite, this.walls, this.onWallCollide.bind(this));

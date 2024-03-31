@@ -27,6 +27,7 @@ export default class MainScene extends BaseScene {
 	private music: Phaser.Sound.BaseSound;
 	private goal: Goal;
 	private vacuum: Vacuum;
+	private vacuum2: Vacuum;
 
 	constructor() {
 		super({ key: MainScene.key });
@@ -54,7 +55,9 @@ export default class MainScene extends BaseScene {
 		this.initializeMapAndCameras();
 		this.makeCoinRainingEffect();
 		this.vacuum = new Vacuum(this.scene.scene, 500, 400, this.player.ball, this.wallLayer);
+		this.vacuum2 = new Vacuum(this.scene.scene, 800, 800, this.player.ball, this.wallLayer);
 		this.add.existing<Container>(this.vacuum);
+		this.add.existing<Container>(this.vacuum2);
 
 		this.coinPool = this.add.group({
 			classType: Coin,
@@ -102,6 +105,7 @@ export default class MainScene extends BaseScene {
 		this.player.update();
 		this.goal.update();
 		this.vacuum.update();
+		this.vacuum2.update();
 		this.rainPool?.children.getArray().forEach((child) => child.update());
 		this.makeItRainCoins(delta);
 	}
@@ -122,6 +126,7 @@ export default class MainScene extends BaseScene {
 
 		this.physics.add.collider(coin, this.player.ball, this.growBall.bind(this));
 		this.physics.add.collider(coin, this.vacuum.vacuumSprite, this.destroyCoin.bind(this));
+		this.physics.add.collider(coin, this.vacuum2.vacuumSprite, this.destroyCoin.bind(this));
 	}
 
 	rainPool: Group;
