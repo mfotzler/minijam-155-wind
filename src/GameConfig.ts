@@ -1,6 +1,6 @@
 export const GAME_CONFIG = {
 	//how long a game lasts in seconds
-	GAME_TIME: 30,
+	GAME_TIME: 60,
 	//the thresholds for when to move up to a larger ball sprite
 	BALL_SIZE_THRESHOLD_SMALL: 0,
 	BALL_SIZE_THRESHOLD_MEDIUM: 1.5,
