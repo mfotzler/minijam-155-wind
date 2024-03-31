@@ -73,6 +73,11 @@ export default class CoinBall extends Container {
 		this.moveBall();
 		this.decelerateBall();
 		this.setBallSize();
+		this.checkIfBallIsOutOfBounds();
+	}
+
+	private checkIfBallIsOutOfBounds() {
+		if (!this.scene.physics.world.bounds.contains(this.x, this.y)) this.setBallPositionToInitial();
 	}
 
 	public setBallSize() {
@@ -90,6 +95,10 @@ export default class CoinBall extends Container {
 
 	public resetBall() {
 		MessageBus.sendMessage(Messages.BallScale, 1);
+		this.setBallPositionToInitial();
+	}
+
+	private setBallPositionToInitial() {
 		this.x = this.initialX;
 		this.y = this.initialY;
 	}
