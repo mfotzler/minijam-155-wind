@@ -4,6 +4,10 @@ import MainScene from './scenes/MainScene';
 import GameOver from './scenes/GameOver';
 import TutorialScene from './scenes/TutorialScene';
 import GameWon from './scenes/GameWon';
+import MessageBus from './messageBus/MessageBus';
+import getRealStorageProvider from './messageBus/realStorageProvider';
+
+MessageBus.initialize(getRealStorageProvider());
 
 new Phaser.Game({
 	type: Phaser.AUTO,

@@ -31,16 +31,20 @@ export default class Timer extends Container {
 		this.add(this.text);
 
 		MessageBus.subscribe(Messages.SecondElapsed, () => {
-			if (!this.isActive) return;
-
-			if (this.timeRemaining > 0) {
-				this.timeRemaining--;
-				this.text.setText(`Time: ${this.timeRemaining}`);
-			} else {
-				this.isActive = false;
-				MessageBus.sendMessage(Messages.GameOver, {});
-				this.text.setText("Time's up!");
-			}
+			this.processSecondElapsed();
 		});
+	}
+
+	private processSecondElapsed() {
+		if (!this.isActive) return;
+
+		if (this.timeRemaining > 0) {
+			this.timeRemaining--;
+			this.text.setText(`Time: ${this.timeRemaining}`);
+		} else {
+			this.isActive = false;
+			MessageBus.sendMessage(Messages.GameOver, {});
+			this.text.setText("Time's up!");
+		}
 	}
 }

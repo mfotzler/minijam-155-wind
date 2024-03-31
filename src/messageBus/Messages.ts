@@ -3,5 +3,6 @@ export const Messages = {
 	GameOver: 'GameOver',
 	BallScale: 'BallScale',
 	DialogueComplete: 'DialogueComplete',
-	PlayerScore: 'PlayerScore'
+	PlayerScore: 'PlayerScore',
+	HighScore: 'HighScore'
 };

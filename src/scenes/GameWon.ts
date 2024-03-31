@@ -37,6 +37,13 @@ export default class GameWon extends BaseScene {
 				image: 'blower-san'
 			},
 			{
+				text: this.isHighScore()
+					? "Looks like this is the best you've done!  Good job!"
+					: "You've done better before.",
+				name: 'Blower-san',
+				image: 'blower-san'
+			},
+			{
 				text: 'Maybe try to collect even more coins next time!',
 				name: 'Blower-san',
 				image: 'blower-san'
@@ -57,9 +64,27 @@ export default class GameWon extends BaseScene {
 		this.music.play({ loop: true });
 	}
 
+	private isHighScore() {
+		let score = MessageBus.getLastMessage<number>(Messages.PlayerScore) ?? 0;
+		let highScore = MessageBus.getLastMessage<number>(Messages.HighScore) ?? 0;
+
+		return score >= highScore;
+	}
+
 	private addTitle() {
+		let score = MessageBus.getLastMessage<number>(Messages.PlayerScore) ?? 0;
+		let highScore = MessageBus.getLastMessage<number>(Messages.HighScore) ?? 0;
+
 		this.add
-			.bitmapText(this.game.renderer.width / 2, 250, 'rubik', 'You win !!!')
+			.bitmapText(this.game.renderer.width / 2, 200, 'rubik', 'You win !!!')
+			.setOrigin(0.5, 0.5);
+
+		this.add
+			.bitmapText(this.game.renderer.width / 2, 250, 'rubik', `Your Score: ${score}`)
+			.setOrigin(0.5, 0.5);
+
+		this.add
+			.bitmapText(this.game.renderer.width / 2, 300, 'rubik', `High Score: ${highScore}`)
 			.setOrigin(0.5, 0.5);
 	}
 

@@ -174,11 +174,18 @@ export default class MainScene extends BaseScene {
 			this.music.stop();
 
 			let score = MessageBus.getLastMessage<number>(Messages.PlayerScore) ?? 0;
+			this.processHighScore(score);
 
 			let key = score > MainScene.scoreToBeat ? GameWon.key : GameOver.key;
 
 			this.scene.start(key);
 		});
+	}
+
+	private processHighScore(score: number) {
+		let currentHighScore = MessageBus.getLastMessage<number>(Messages.HighScore) ?? 0;
+
+		if (score >= currentHighScore) MessageBus.sendMessage(Messages.HighScore, score);
 	}
 
 	private addPlayer() {
