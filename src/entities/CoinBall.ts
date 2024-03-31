@@ -1,12 +1,12 @@
 import * as Phaser from 'phaser';
+import MessageBus from '../messageBus/MessageBus';
+import {Messages} from '../messageBus/Messages';
+import {GAME_CONFIG} from '../GameConfig';
 import Container = Phaser.GameObjects.Container;
 import Vector2 = Phaser.Math.Vector2;
 import Arc = Phaser.GameObjects.Arc;
-import MessageBus from '../messageBus/MessageBus';
-import { Messages } from '../messageBus/Messages';
 import Sprite = Phaser.GameObjects.Sprite;
 import Body = Phaser.Physics.Arcade.Body;
-import { GAME_CONFIG } from '../GameConfig';
 
 const BALL_SIZE_THRESHOLDS = {
 	small: GAME_CONFIG.BALL_SIZE_THRESHOLD_SMALL,
@@ -67,13 +67,13 @@ export default class CoinBall extends Container {
 	private initializeMessageBus() {
 		MessageBus.subscribe<number>(Messages.BallScale, (value) => {
 			this.ballScale = value ?? GAME_CONFIG.INITIAL_BALL_SCALE;
+			this.setBallSize();
 		});
 	}
 
 	public update() {
 		this.moveBall();
 		this.decelerateBall();
-		this.setBallSize();
 		this.checkIfBallIsOutOfBounds();
 	}
 
