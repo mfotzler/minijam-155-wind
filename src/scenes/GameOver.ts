@@ -36,7 +36,9 @@ export default class GameOver extends BaseScene {
 	private addDialogueBox() {
 		const dialogueBox = new DialogueBox(this, 0, this.renderer.height - 420, [
 			{
-				text: 'Try to blow through more coins next time!  There might be a secret ahead if you get enough.',
+				text:
+					'Try to blow through more coins next time!  There might be a secret ahead' +
+					'\n if you get enough.',
 				name: 'Blower-san',
 				image: 'lil-blower-san01'
 			}
