@@ -100,7 +100,7 @@ export default class MainScene extends BaseScene {
 	}
 	private timeUntilNextCoin = 0;
 	private makeItRainCoins(delta: number) {
-		let maxPossibleTimeTilNextCoin = 500;
+		let maxPossibleTimeTilNextCoin = 250;
 		this.timeUntilNextCoin -= delta;
 
 		if (this.timeUntilNextCoin <= 0) {
