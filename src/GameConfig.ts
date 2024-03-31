@@ -21,5 +21,7 @@ export const GAME_CONFIG = {
 	BLOWER_SAN_STARTING_Y: 600,
 	//starting coordinates for the ball
 	BALL_STARTING_X: 600,
-	BALL_STARTING_Y: 605
+	BALL_STARTING_Y: 605,
+	//the score to win the game with
+	GAME_WIN_SCORE: 20000
 };

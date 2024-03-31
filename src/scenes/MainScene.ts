@@ -19,7 +19,6 @@ import { GAME_CONFIG } from '../GameConfig';
 
 export default class MainScene extends BaseScene {
 	static readonly key = 'MainScene';
-	static readonly scoreToBeat = 1000;
 	private player: Player;
 	private timeHandler: TimeHandler;
 	private wallLayer: Phaser.Tilemaps.TilemapLayer;
@@ -181,7 +180,7 @@ export default class MainScene extends BaseScene {
 			let score = MessageBus.getLastMessage<number>(Messages.PlayerScore) ?? 0;
 			this.processHighScore(score);
 
-			let key = score > MainScene.scoreToBeat ? GameWon.key : GameOver.key;
+			let key = score > GAME_CONFIG.GAME_WIN_SCORE ? GameWon.key : GameOver.key;
 
 			this.scene.start(key);
 		});
