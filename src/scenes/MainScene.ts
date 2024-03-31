@@ -1,6 +1,6 @@
 import * as Phaser from 'phaser';
 import MessageBus from '../messageBus/MessageBus';
-import {Messages} from '../messageBus/Messages';
+import { Messages } from '../messageBus/Messages';
 import Timer from '../entities/Timer';
 import GameOver from './GameOver';
 import BaseScene from './BaseScene';
@@ -13,6 +13,8 @@ import GameWon from './GameWon';
 import Container = Phaser.GameObjects.Container;
 import Group = Phaser.GameObjects.Group;
 import GameObjectWithBody = Phaser.Types.Physics.Arcade.GameObjectWithBody;
+import * as phaser from 'phaser';
+import CoinRain from '../entities/CoinRain';
 
 export default class MainScene extends BaseScene {
 	static readonly key = 'MainScene';
@@ -46,6 +48,7 @@ export default class MainScene extends BaseScene {
 		this.playSound();
 		this.addGoal();
 		this.initializeMapAndCameras();
+		this.makeCoinRainingEffect();
 		this.vacuum = new Vacuum(this.scene.scene, 500, 400, this.player.ball, this.wallLayer);
 		this.add.existing<Container>(this.vacuum);
 
@@ -92,13 +95,37 @@ export default class MainScene extends BaseScene {
 		this.player.update();
 		this.goal.update();
 		this.vacuum.update();
+		this.rainPool?.children.getArray().forEach((child) => child.update());
+		this.makeItRainCoins(delta);
+	}
+	private timeUntilNextCoin = 0;
+	private makeItRainCoins(delta: number) {
+		let maxPossibleTimeTilNextCoin = 500;
+		this.timeUntilNextCoin -= delta;
 
-		if (this.coinPool.children.getArray().length < 50) {
+		if (this.timeUntilNextCoin <= 0) {
+			this.timeUntilNextCoin = Math.random() * maxPossibleTimeTilNextCoin;
 			const coin = this.coinPool.get();
 			coin.setPosition(Math.random() * this.renderer.width, Math.random() * this.renderer.height);
 
 			this.physics.add.collider(coin, this.player.ball, this.growBall.bind(this));
 			this.physics.add.collider(coin, this.vacuum.vacuumSprite, this.destroyCoin.bind(this));
+		}
+	}
+	rainPool: Group;
+	private makeCoinRainingEffect() {
+		this.rainPool = this.add.group({
+			classType: CoinRain,
+			max: 1337
+		});
+
+		while (this.rainPool.children.getArray().length < 320) {
+			const coin = this.rainPool.get();
+			coin.setPosition(Math.random() * this.renderer.width, Math.random() * this.renderer.height);
+			this.physics.add.existing(coin);
+
+			(coin as CoinRain).body.velocity.y = 270;
+			(coin as CoinRain).body.velocity.x = -18;
 		}
 	}
 
