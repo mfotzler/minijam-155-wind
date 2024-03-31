@@ -124,8 +124,8 @@ export default class MainScene extends BaseScene {
 		coin.setPosition(Math.random() * this.renderer.width, Math.random() * this.renderer.height);
 
 		this.physics.add.collider(coin, this.player.ball, this.growBall.bind(this));
-		this.physics.add.collider(coin, this.vacuum.vacuumSprite, this.destroyCoin.bind(this));
-		this.physics.add.collider(coin, this.vacuum2.vacuumSprite, this.destroyCoin.bind(this));
+		this.physics.add.collider(coin, this.vacuum.collisionArc, this.destroyCoin.bind(this));
+		this.physics.add.collider(coin, this.vacuum2.collisionArc, this.destroyCoin.bind(this));
 	}
 
 	rainPool: Group;

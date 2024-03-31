@@ -3,17 +3,17 @@ import Container = Phaser.GameObjects.Container;
 import CoinBall from './CoinBall';
 import Sprite = Phaser.GameObjects.Sprite;
 import TilemapLayer = Phaser.Tilemaps.TilemapLayer;
-import Vector2 = Phaser.Math.Vector2;
 import Vector2Like = Phaser.Types.Math.Vector2Like;
 import Body = Phaser.Physics.Arcade.Body;
 import BaseSound = Phaser.Sound.BaseSound;
 import { Scene } from 'phaser';
+import Arc = Phaser.GameObjects.Arc;
 
 export default class Vacuum extends Container {
 	private static hasCreatedAnimations = false;
 	public vacuumSprite: Sprite;
 	keepDirection: boolean = false;
-
+	public collisionArc: Arc;
 	static CreateAnimations(scene: Scene) {
 		if (!Vacuum.hasCreatedAnimations) {
 			scene.anims.create({
@@ -51,13 +51,34 @@ export default class Vacuum extends Container {
 		this.add(this.vacuumSprite);
 		this.moveInARandomDirection();
 		this.scene.physics.add.collider(this.vacuumSprite, this.walls, this.onWallCollide.bind(this));
+		this.initializeArc(x, y);
 	}
 
 	update() {
-		this.scene.physics.collide(this.vacuumSprite, this.ball, this.onBallCollide.bind(this));
+		this.setArcLocation();
+
+		this.scene.physics.collide(this.collisionArc, this.ball, this.onBallCollide.bind(this));
 		if (this.isNotMovingFastEnough()) this.moveInARandomDirection();
 	}
 
+	private initializeArc(x: number, y: number) {
+		this.collisionArc = this.scene.add.circle(x, y, 35, 0, 0);
+
+		let physics = this.scene.physics.add.existing(this.collisionArc);
+		(physics.body as Body).setCircle(35);
+	}
+
+	private setArcLocation() {
+		let angle = this.vacuumSprite.rotation - Math.PI / 2;
+
+		let magnitude = 100;
+
+		const collisionY = Math.sin(angle) * magnitude;
+		const collisionX = Math.cos(angle) * magnitude;
+
+		this.collisionArc.x = collisionX + (this.vacuumSprite.body as Body).center.x;
+		this.collisionArc.y = collisionY + (this.vacuumSprite.body as Body).center.y;
+	}
 	private shouldTryUpdatingDirection() {
 		return !this.keepDirection;
 	}
@@ -102,15 +123,6 @@ export default class Vacuum extends Container {
 		setTimeout(() => {
 			this.keepDirection = false;
 		}, 100);
-	}
-
-	private moveInTheOppositeDirection() {
-		let direction = {
-			x: -this.vacuumSprite.body.velocity.x,
-			y: -this.vacuumSprite.body.velocity.y
-		};
-		let angle = this.getAngleOfAttack(direction);
-		this.setAngleAndDirection(angle, direction);
 	}
 
 	private getAngleOfAttack(vector: Vector2Like) {
