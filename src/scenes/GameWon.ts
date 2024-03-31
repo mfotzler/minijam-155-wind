@@ -2,6 +2,8 @@ import BaseScene from './BaseScene';
 import UIHelpers from '../UIHelpers';
 import MainScene from './MainScene';
 import DialogueBox from '../entities/DialogueBox';
+import MessageBus from "../messageBus/MessageBus";
+import {Messages} from "../messageBus/Messages";
 import Container = Phaser.GameObjects.Container;
 
 export default class GameWon extends BaseScene {
@@ -13,7 +15,9 @@ export default class GameWon extends BaseScene {
 
 	create(): void {
 		this.addTitle();
-		this.addPlayButton();
+		MessageBus.subscribe(Messages.DialogueComplete, () => {
+			this.addPlayButton();
+		});
 		this.playSound();
 
 		const dialogueBox = new DialogueBox(this, 0, this.renderer.height - 420, [

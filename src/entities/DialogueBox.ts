@@ -1,4 +1,6 @@
 import * as Phaser from 'phaser';
+import {Messages} from "../messageBus/Messages";
+import MessageBus from "../messageBus/MessageBus";
 import BitmapText = Phaser.GameObjects.BitmapText;
 import Container = Phaser.GameObjects.Container;
 import Image = Phaser.GameObjects.Image;
@@ -37,6 +39,9 @@ export default class DialogueBox extends Container {
             if(this.currentMessageIndex < messages.length - 1) {
                 this.currentMessageIndex++;
                 this.showMessage(messages[this.currentMessageIndex]);
+            }
+            if(this.currentMessageIndex === messages.length - 1) {
+                MessageBus.sendMessage(Messages.DialogueComplete, {});
             }
         });
     }
