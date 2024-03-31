@@ -21,7 +21,7 @@ export default class Goal extends Container {
 		let radius = 50;
 
 		this.circle = this.scene.add.circle(x, y, radius, 0x323232);
-		this.scene.physics.add.existing(this.circle);
+		this.scene.physics.add.existing(this.circle, true);
 		(this.circle.body as Body).setCircle(radius);
 	}
 
