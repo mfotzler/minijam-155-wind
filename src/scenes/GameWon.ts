@@ -2,8 +2,8 @@ import BaseScene from './BaseScene';
 import UIHelpers from '../UIHelpers';
 import MainScene from './MainScene';
 import DialogueBox from '../entities/DialogueBox';
-import MessageBus from "../messageBus/MessageBus";
-import {Messages} from "../messageBus/Messages";
+import MessageBus from '../messageBus/MessageBus';
+import { Messages } from '../messageBus/Messages';
 import Container = Phaser.GameObjects.Container;
 
 export default class GameWon extends BaseScene {
@@ -65,6 +65,7 @@ export default class GameWon extends BaseScene {
 
 	private addPlayButton() {
 		UIHelpers.addCenteredButton(this, 400, 'Play Again', () => {
+			this.music.stop();
 			this.scene.start(MainScene.key);
 		});
 	}
