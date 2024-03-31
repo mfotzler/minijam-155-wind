@@ -15,6 +15,7 @@ export default class TutorialScene extends BaseScene {
 		this.addTitle();
 		this.addPlayButton();
 		this.playSound();
+		this.addGraphic();
 
 		const dialogueBox = new DialogueBox(this.scene.scene, 0, this.renderer.height - 420, [
 			{
@@ -36,12 +37,19 @@ export default class TutorialScene extends BaseScene {
 		this.add.existing<Container>(dialogueBox);
 	}
 
+	addGraphic() {
+		let image = this.add.image(this.renderer.width / 2 + 250, 50, 'tutorial-graphic');
+		image.setOrigin(0.5, 0);
+		image.scale = 0.7;
+	}
+
 	update(time: number, delta: number): void {}
 
 	override preload() {
 		super.preload();
 
 		this.load.audio('blower_san_theme', 'assets/lil_blower_san_theme.mp3');
+		this.load.image('tutorial-graphic', 'assets/tutorial.png');
 	}
 
 	private playSound() {
@@ -55,7 +63,7 @@ export default class TutorialScene extends BaseScene {
 	}
 
 	private addPlayButton() {
-		UIHelpers.addCenteredButton(this, 400, 'Main Menu', () => {
+		UIHelpers.addButton(this, 320, 400, 'Main Menu', () => {
 			this.music.stop();
 			this.scene.start(MainMenu.key);
 		});
