@@ -4,20 +4,20 @@
       "frame": {
         "x": 2,
         "y": 2,
-        "w": 500,
-        "h": 100
+        "w": 1280,
+        "h": 123
       },
       "rotated": false,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
         "y": 0,
-        "w": 500,
-        "h": 100
+        "w": 1280,
+        "h": 123
       },
       "sourceSize": {
-        "w": 500,
-        "h": 100
+        "w": 1280,
+        "h": 123
       },
       "pivot": {
         "x": 0.5,
@@ -26,7 +26,7 @@
     },
     "blower-san": {
       "frame": {
-        "x": 506,
+        "x": 1286,
         "y": 2,
         "w": 280,
         "h": 380
@@ -50,8 +50,8 @@
     },
     "lil-blower-san01": {
       "frame": {
-        "x": 2,
-        "y": 106,
+        "x": 1570,
+        "y": 2,
         "w": 158,
         "h": 64
       },
@@ -74,8 +74,8 @@
     },
     "lil-blower-san02": {
       "frame": {
-        "x": 164,
-        "y": 106,
+        "x": 1732,
+        "y": 2,
         "w": 158,
         "h": 64
       },
@@ -98,8 +98,8 @@
     },
     "coin-ball-l01": {
       "frame": {
-        "x": 326,
-        "y": 106,
+        "x": 1894,
+        "y": 2,
         "w": 150,
         "h": 120
       },
@@ -122,8 +122,8 @@
     },
     "coin-ball-l02": {
       "frame": {
-        "x": 2,
-        "y": 174,
+        "x": 1570,
+        "y": 70,
         "w": 150,
         "h": 120
       },
@@ -146,8 +146,8 @@
     },
     "coin-ball-l03": {
       "frame": {
-        "x": 156,
-        "y": 174,
+        "x": 1724,
+        "y": 70,
         "w": 150,
         "h": 110
       },
@@ -170,8 +170,8 @@
     },
     "menu-button": {
       "frame": {
-        "x": 310,
-        "y": 230,
+        "x": 1878,
+        "y": 126,
         "w": 146,
         "h": 48
       },
@@ -186,30 +186,6 @@
       "sourceSize": {
         "w": 146,
         "h": 48
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "wall": {
-      "frame": {
-        "x": 460,
-        "y": 230,
-        "w": 32,
-        "h": 32
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 32,
-        "h": 32
-      },
-      "sourceSize": {
-        "w": 32,
-        "h": 32
       },
       "pivot": {
         "x": 0.5,
@@ -218,8 +194,8 @@
     },
     "vacuum01": {
       "frame": {
-        "x": 310,
-        "y": 282,
+        "x": 1878,
+        "y": 178,
         "w": 100,
         "h": 337
       },
@@ -242,8 +218,8 @@
     },
     "coin": {
       "frame": {
-        "x": 414,
-        "y": 282,
+        "x": 1982,
+        "y": 178,
         "w": 50,
         "h": 50
       },
@@ -266,8 +242,8 @@
     },
     "coin02": {
       "frame": {
-        "x": 414,
-        "y": 336,
+        "x": 1982,
+        "y": 232,
         "w": 50,
         "h": 50
       },
@@ -282,126 +258,6 @@
       "sourceSize": {
         "w": 50,
         "h": 50
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "vacuum02": {
-      "frame": {
-        "x": 156,
-        "y": 288,
-        "w": 100,
-        "h": 337
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 100,
-        "h": 337
-      },
-      "sourceSize": {
-        "w": 100,
-        "h": 337
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "vacuum03": {
-      "frame": {
-        "x": 2,
-        "y": 298,
-        "w": 100,
-        "h": 337
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 100,
-        "h": 337
-      },
-      "sourceSize": {
-        "w": 100,
-        "h": 337
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "coin-ball-m01": {
-      "frame": {
-        "x": 790,
-        "y": 2,
-        "w": 100,
-        "h": 79
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 100,
-        "h": 79
-      },
-      "sourceSize": {
-        "w": 100,
-        "h": 79
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "coin-ball-m02": {
-      "frame": {
-        "x": 894,
-        "y": 2,
-        "w": 100,
-        "h": 79
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 100,
-        "h": 79
-      },
-      "sourceSize": {
-        "w": 100,
-        "h": 79
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "coin-ball-m03": {
-      "frame": {
-        "x": 998,
-        "y": 2,
-        "w": 100,
-        "h": 73
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 100,
-        "h": 73
-      },
-      "sourceSize": {
-        "w": 100,
-        "h": 73
       },
       "pivot": {
         "x": 0.5,
@@ -410,8 +266,8 @@
     },
     "coin03": {
       "frame": {
-        "x": 1102,
-        "y": 2,
+        "x": 1982,
+        "y": 286,
         "w": 50,
         "h": 50
       },
@@ -434,8 +290,8 @@
     },
     "coin04": {
       "frame": {
-        "x": 1156,
-        "y": 2,
+        "x": 1982,
+        "y": 340,
         "w": 50,
         "h": 50
       },
@@ -458,8 +314,8 @@
     },
     "coin-ball-s01": {
       "frame": {
-        "x": 1210,
-        "y": 2,
+        "x": 1982,
+        "y": 394,
         "w": 50,
         "h": 38
       },
@@ -482,8 +338,8 @@
     },
     "coin-ball-s02": {
       "frame": {
-        "x": 1264,
-        "y": 2,
+        "x": 1982,
+        "y": 436,
         "w": 50,
         "h": 38
       },
@@ -506,8 +362,8 @@
     },
     "coin-ball-s03": {
       "frame": {
-        "x": 1318,
-        "y": 2,
+        "x": 1982,
+        "y": 478,
         "w": 50,
         "h": 35
       },
@@ -528,10 +384,130 @@
         "y": 0.5
       }
     },
+    "vacuum02": {
+      "frame": {
+        "x": 1724,
+        "y": 184,
+        "w": 100,
+        "h": 337
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 337
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 337
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "vacuum03": {
+      "frame": {
+        "x": 1570,
+        "y": 194,
+        "w": 100,
+        "h": 337
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 337
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 337
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "coin-ball-m01": {
+      "frame": {
+        "x": 1828,
+        "y": 519,
+        "w": 100,
+        "h": 79
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 79
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 79
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "coin-ball-m02": {
+      "frame": {
+        "x": 1932,
+        "y": 525,
+        "w": 100,
+        "h": 79
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 79
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 79
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "coin-ball-m03": {
+      "frame": {
+        "x": 1932,
+        "y": 608,
+        "w": 100,
+        "h": 73
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 73
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 73
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
     "coin01": {
       "frame": {
-        "x": 414,
-        "y": 282,
+        "x": 1982,
+        "y": 178,
         "w": 50,
         "h": 50
       },
@@ -559,8 +535,8 @@
     "image": "texture.png",
     "format": "RGBA8888",
     "size": {
-      "w": 1370,
-      "h": 637
+      "w": 2046,
+      "h": 683
     },
     "scale": 1
   }
