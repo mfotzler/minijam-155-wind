@@ -17,12 +17,16 @@ export default class Player {
 	constructor(
 		private scene: Phaser.Scene,
 		x: number,
-		y: number
+		y: number,
+		includeBall: boolean = true
 	) {
 		this.initializeSprite(x, y);
 		this.initializeMoveLocation();
-		this.initializeArc(x, y);
-		this.initializeBall();
+
+		if (includeBall) {
+			this.initializeArc(x, y);
+			this.initializeBall();
+		}
 	}
 
 	private initializeSprite(x: number, y: number) {
