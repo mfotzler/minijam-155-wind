@@ -73,6 +73,7 @@ export default class CoinBall extends Container {
 
 	public update() {
 		this.moveBall();
+		this.RotateBallSprite();
 		this.decelerateBall();
 		this.checkIfBallIsOutOfBounds();
 	}
@@ -116,6 +117,19 @@ export default class CoinBall extends Container {
 			.limit(10);
 		acceleration.copy(force).scale(1 / this.body.mass);
 		this.body.velocity['add'](acceleration);
+	}
+
+	private RotateBallSprite() {
+		let angle = this.getAngleOfAttack(this.body.velocity);
+		let offset = -0.15;
+
+		let rotation = angle + offset;
+
+		this.ballSprite.setRotation(rotation);
+	}
+
+	private getAngleOfAttack(vector) {
+		return Math.atan2(vector.y, vector.x) + 1.5;
 	}
 
 	private decelerateBall() {
