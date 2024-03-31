@@ -15,6 +15,7 @@ import Group = Phaser.GameObjects.Group;
 import GameObjectWithBody = Phaser.Types.Physics.Arcade.GameObjectWithBody;
 import * as phaser from 'phaser';
 import CoinRain from '../entities/CoinRain';
+import BaseSound = Phaser.Sound.BaseSound;
 
 export default class MainScene extends BaseScene {
 	static readonly key = 'MainScene';
@@ -37,6 +38,9 @@ export default class MainScene extends BaseScene {
 		this.load.tilemapTiledJSON('map1', 'assets/map1.json');
 		this.load.image('tiles', 'assets/wall.png');
 		this.load.audio('game_background', 'assets/game_background.mp3');
+		this.load.audio('ball_die', 'assets/ball_die.wav');
+		this.load.audio('coin_get', 'assets/coin_get.wav');
+		this.load.audio('goal_score', 'assets/goal_score.wav');
 	}
 
 	create(): void {
@@ -107,14 +111,19 @@ export default class MainScene extends BaseScene {
 		this.timeUntilNextCoin -= delta;
 
 		if (this.timeUntilNextCoin <= 0) {
-			this.timeUntilNextCoin = Math.random() * maxPossibleTimeTilNextCoin;
-			const coin = this.coinPool.get();
-			coin.setPosition(Math.random() * this.renderer.width, Math.random() * this.renderer.height);
-
-			this.physics.add.collider(coin, this.player.ball, this.growBall.bind(this));
-			this.physics.add.collider(coin, this.vacuum.vacuumSprite, this.destroyCoin.bind(this));
+			this.spawnCoin(maxPossibleTimeTilNextCoin);
 		}
 	}
+
+	private spawnCoin(maxPossibleTimeTilNextCoin: number) {
+		this.timeUntilNextCoin = Math.random() * maxPossibleTimeTilNextCoin;
+		const coin = this.coinPool.get();
+		coin.setPosition(Math.random() * this.renderer.width, Math.random() * this.renderer.height);
+
+		this.physics.add.collider(coin, this.player.ball, this.growBall.bind(this));
+		this.physics.add.collider(coin, this.vacuum.vacuumSprite, this.destroyCoin.bind(this));
+	}
+
 	rainPool: Group;
 	private makeCoinRainingEffect() {
 		this.rainPool = this.add.group({
@@ -139,10 +148,19 @@ export default class MainScene extends BaseScene {
 	growBall(coin: GameObjectWithBody) {
 		this.destroyCoin(coin);
 
+		this.playCoinPickupSoundEffect();
+
 		let scale = MessageBus.getLastMessage<number>(Messages.BallScale);
 		let growthFactor = 0.05;
 
 		MessageBus.sendMessage(Messages.BallScale, scale + growthFactor);
+	}
+
+	private coinPickupSoundEffect: BaseSound;
+	private playCoinPickupSoundEffect() {
+		if (!this.coinPickupSoundEffect) this.coinPickupSoundEffect = this.sound.add('coin_get');
+
+		this.coinPickupSoundEffect.play();
 	}
 
 	private addTimer() {

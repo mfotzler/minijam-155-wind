@@ -6,6 +6,7 @@ import TilemapLayer = Phaser.Tilemaps.TilemapLayer;
 import Vector2 = Phaser.Math.Vector2;
 import Vector2Like = Phaser.Types.Math.Vector2Like;
 import Body = Phaser.Physics.Arcade.Body;
+import BaseSound = Phaser.Sound.BaseSound;
 
 export default class Vacuum extends Container {
 	private static hasCreatedAnimations = false;
@@ -63,7 +64,15 @@ export default class Vacuum extends Container {
 	}
 
 	onBallCollide() {
+		this.playDeathSoundEffect();
 		this.ball.resetBall();
+	}
+
+	deathSoundEffect: BaseSound;
+	private playDeathSoundEffect() {
+		if (!this.deathSoundEffect) this.deathSoundEffect = this.scene.sound.add('ball_die');
+
+		if (!this.deathSoundEffect.isPlaying) this.deathSoundEffect.play();
 	}
 
 	onWallCollide() {
