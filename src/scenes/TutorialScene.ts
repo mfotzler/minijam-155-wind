@@ -41,7 +41,7 @@ export default class TutorialScene extends BaseScene {
 	override preload() {
 		super.preload();
 
-		this.load.audio('blower_san_theme', 'assets/blower_san_theme.mp3');
+		this.load.audio('blower_san_theme', 'assets/lil_blower_san_theme.mp3');
 	}
 
 	private playSound() {
