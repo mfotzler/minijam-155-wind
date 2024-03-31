@@ -24,7 +24,7 @@
     "height": 2048,
     "fixedSize": false,
     "powerOfTwo": false,
-    "padding": 0,
+    "padding": 2,
     "extrude": 0,
     "allowRotation": false,
     "allowTrim": false,
