@@ -1,24 +1,24 @@
 import * as Phaser from 'phaser';
 import MessageBus from '../messageBus/MessageBus';
-import { Messages } from '../messageBus/Messages';
+import {Messages} from '../messageBus/Messages';
 import Timer from '../entities/Timer';
 import GameOver from './GameOver';
 import BaseScene from './BaseScene';
 import Vacuum from '../entities/Vacuum';
 import Player from '../entities/Player';
-import Container = Phaser.GameObjects.Container;
-import Group = Phaser.GameObjects.Group;
 import Coin from '../entities/Coin';
-import GameObjectWithBody = Phaser.Types.Physics.Arcade.GameObjectWithBody;
 import Goal from '../entities/Goal';
 import ScoreBox from '../entities/ScoreBox';
 import GameWon from './GameWon';
+import Container = Phaser.GameObjects.Container;
+import Group = Phaser.GameObjects.Group;
+import GameObjectWithBody = Phaser.Types.Physics.Arcade.GameObjectWithBody;
 
 export default class MainScene extends BaseScene {
 	static readonly key = 'MainScene';
 	static readonly scoreToBeat = 1000;
 	private player: Player;
-	private timeHandler: TimeHandler = new TimeHandler();
+	private timeHandler: TimeHandler;
 	private wallLayer: Phaser.Tilemaps.TilemapLayer;
 	private coinPool: Group;
 	private music: Phaser.Sound.BaseSound;
@@ -38,7 +38,8 @@ export default class MainScene extends BaseScene {
 	}
 
 	create(): void {
-		this.addCircle();
+		this.timeHandler = new TimeHandler();
+		this.addPlayer();
 		this.addTimer();
 		this.addScoreBox();
 		this.addGameOverHandler();
@@ -132,7 +133,7 @@ export default class MainScene extends BaseScene {
 		});
 	}
 
-	private addCircle() {
+	private addPlayer() {
 		this.player = new Player(this, 200, 200);
 	}
 }

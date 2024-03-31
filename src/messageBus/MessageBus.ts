@@ -78,6 +78,10 @@ export default class MessageBus {
 		messages.forEach((message) => this.clear(message));
 	}
 
+	static clearAllSubscribers() {
+		this.subscribers = {};
+	}
+
 	static getLastMessage<T = any>(message: string): T | null {
 		return this.messageLog[message];
 	}
