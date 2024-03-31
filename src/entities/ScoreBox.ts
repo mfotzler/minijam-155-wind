@@ -30,7 +30,7 @@ export default class ScoreBox extends Container {
 		this.add(this.text);
 
 		MessageBus.subscribe<number>(Messages.PlayerScore, (score) => {
-			this.score = score;
+			this.score = score ?? 0;
 
 			this.text.setText(`Score: ${this.score}`);
 		});

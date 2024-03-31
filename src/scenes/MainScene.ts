@@ -57,6 +57,9 @@ export default class MainScene extends BaseScene {
 			max: 50
 		});
 
+		MessageBus.clear(Messages.PlayerScore);
+		MessageBus.clear(Messages.BallScale);
+
 		this.initializeBallScale();
 	}
 
