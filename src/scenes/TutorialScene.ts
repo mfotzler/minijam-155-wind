@@ -35,6 +35,12 @@ export default class TutorialScene extends BaseScene {
 			},
 			{
 				text:
+					"You can click the screen to move me! I'll always face the ball of coins.",
+				name: 'Blower-san',
+				image: 'lil-blower-san01'
+			},
+			{
+				text:
 					"Once you've amassed your coin hoard, guide the ball to the designated " +
 					'\n goal hole to secure those valuable points!',
 				name: 'Blower-san',

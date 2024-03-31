@@ -74,7 +74,7 @@ export default class Player {
 		this.moveDirect.x = this.scene.input.mousePointer.x;
 		this.moveDirect.y = this.scene.input.mousePointer.y;
 
-		this.scene.physics.accelerateToObject(this.sprite, this.moveDirect, 250);
+		this.scene.physics.accelerateToObject(this.sprite, this.moveDirect, 450);
 	}
 
 	private RotatePlayerSprite() {

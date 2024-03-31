@@ -16,8 +16,8 @@ const BALL_SIZE_THRESHOLDS = {
 
 const PHYSICS_BODY_SIZE = {
 	small: 50 / 2,
-	medium: 80 / 2,
-	large: 120 / 2
+	medium: 100 / 2,
+	large: 150 / 2
 };
 
 export default class CoinBall extends Container {
@@ -54,7 +54,7 @@ export default class CoinBall extends Container {
 			frames: scene.anims.generateFrameNames('textures', {
 				prefix: `coin-ball-${size}`,
 				start: 1,
-				end: 3,
+				end: 8,
 				zeroPad: 2
 			}),
 			frameRate: 3,
@@ -84,10 +84,10 @@ export default class CoinBall extends Container {
 	public setBallSize() {
 		if (this.ballScale > BALL_SIZE_THRESHOLDS.large) {
 			this.ballSprite.play('roll-l');
-			(this.body as any as Body).setCircle(PHYSICS_BODY_SIZE.large, -60, -60);
+			(this.body as any as Body).setCircle(PHYSICS_BODY_SIZE.large, -75, -75);
 		} else if (this.ballScale > BALL_SIZE_THRESHOLDS.medium) {
 			this.ballSprite.play('roll-m');
-			(this.body as any as Body).setCircle(PHYSICS_BODY_SIZE.medium, -40, -40);
+			(this.body as any as Body).setCircle(PHYSICS_BODY_SIZE.medium, -50, -50);
 		} else if (this.ballScale > BALL_SIZE_THRESHOLDS.small) {
 			this.ballSprite.play('roll-s');
 			(this.body as any as Body).setCircle(PHYSICS_BODY_SIZE.small, -25, -25);
