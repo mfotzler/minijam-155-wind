@@ -4,6 +4,7 @@ import Sprite = Phaser.GameObjects.Sprite;
 import Arc = Phaser.GameObjects.Arc;
 import Body = Phaser.Physics.Arcade.Body;
 import Container = Phaser.GameObjects.Container;
+import { GAME_CONFIG } from '../GameConfig';
 
 export default class Player {
 	private static hasCreatedAnimations = false;
@@ -21,7 +22,7 @@ export default class Player {
 		this.initializeSprite(x, y);
 		this.initializeMoveLocation();
 		this.initializeArc(x, y);
-		this.initializeBall(x, y);
+		this.initializeBall();
 	}
 
 	private initializeSprite(x: number, y: number) {
@@ -91,8 +92,13 @@ export default class Player {
 		return Math.atan2(ballY - spriteY, ballX - spriteX);
 	}
 
-	private initializeBall(x: number, y: number) {
-		this.ball = new CoinBall(this.scene, x + 400, y + 105, this.collisionArc);
+	private initializeBall() {
+		this.ball = new CoinBall(
+			this.scene,
+			GAME_CONFIG.BALL_STARTING_X,
+			GAME_CONFIG.BALL_STARTING_Y,
+			this.collisionArc
+		);
 
 		this.scene.add.existing<Container>(this.ball);
 		this.scene.physics.add.existing(this.ball, false);

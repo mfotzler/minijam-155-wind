@@ -7,6 +7,7 @@ import Body = Phaser.Physics.Arcade.Body;
 import MessageBus from '../messageBus/MessageBus';
 import { Messages } from '../messageBus/Messages';
 import BaseSound = Phaser.Sound.BaseSound;
+import { GAME_CONFIG } from '../GameConfig';
 
 export default class Goal extends Container {
 	circle: Arc;
@@ -47,10 +48,11 @@ export default class Goal extends Container {
 	}
 
 	private calculateScore(scale: number) {
-		let baseScore = 1000;
-		let perGrowthMultiplier = 500;
+		let baseScore = GAME_CONFIG.GOAL_SCORE_BASE;
+		let perGrowthMultiplier = GAME_CONFIG.GOAL_SCORE_SCALE_MULTIPLIER;
+		let baseScale = GAME_CONFIG.INITIAL_BALL_SCALE;
 
-		let growthScore = (scale - 1) * 10 * perGrowthMultiplier;
+		let growthScore = (scale - baseScale) * 10 * perGrowthMultiplier;
 
 		return Math.floor(baseScore + growthScore);
 	}

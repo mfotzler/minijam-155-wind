@@ -6,11 +6,12 @@ import MessageBus from '../messageBus/MessageBus';
 import { Messages } from '../messageBus/Messages';
 import Sprite = Phaser.GameObjects.Sprite;
 import Body = Phaser.Physics.Arcade.Body;
+import { GAME_CONFIG } from '../GameConfig';
 
 const BALL_SIZE_THRESHOLDS = {
-	small: 0,
-	medium: 1.5,
-	large: 2.0
+	small: GAME_CONFIG.BALL_SIZE_THRESHOLD_SMALL,
+	medium: GAME_CONFIG.BALL_SIZE_THRESHOLD_MEDIUM,
+	large: GAME_CONFIG.BALL_SIZE_THRESHOLD_LARGE
 };
 
 const PHYSICS_BODY_SIZE = {
@@ -61,11 +62,11 @@ export default class CoinBall extends Container {
 		});
 	}
 
-	ballScale: number = 1;
+	ballScale: number = GAME_CONFIG.INITIAL_BALL_SCALE;
 
 	private initializeMessageBus() {
 		MessageBus.subscribe<number>(Messages.BallScale, (value) => {
-			this.ballScale = value ?? 1;
+			this.ballScale = value ?? GAME_CONFIG.INITIAL_BALL_SCALE;
 		});
 	}
 

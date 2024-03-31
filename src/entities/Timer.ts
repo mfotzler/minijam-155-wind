@@ -3,11 +3,12 @@ import { Messages } from '../messageBus/Messages';
 import MessageBus from '../messageBus/MessageBus';
 import BitmapText = Phaser.GameObjects.BitmapText;
 import Container = Phaser.GameObjects.Container;
+import { GAME_CONFIG } from '../GameConfig';
 
 export default class Timer extends Container {
 	private text: BitmapText;
 	private isActive = true;
-	private timeRemaining: number = 30;
+	private timeRemaining: number = GAME_CONFIG.GAME_TIME;
 	public static TimerWidth: number = 300;
 	constructor(scene: Phaser.Scene, x: number, y: number) {
 		super(scene, x, y);

@@ -13,9 +13,9 @@ import GameWon from './GameWon';
 import Container = Phaser.GameObjects.Container;
 import Group = Phaser.GameObjects.Group;
 import GameObjectWithBody = Phaser.Types.Physics.Arcade.GameObjectWithBody;
-import * as phaser from 'phaser';
 import CoinRain from '../entities/CoinRain';
 import BaseSound = Phaser.Sound.BaseSound;
+import { GAME_CONFIG } from '../GameConfig';
 
 export default class MainScene extends BaseScene {
 	static readonly key = 'MainScene';
@@ -151,7 +151,7 @@ export default class MainScene extends BaseScene {
 		this.playCoinPickupSoundEffect();
 
 		let scale = MessageBus.getLastMessage<number>(Messages.BallScale);
-		let growthFactor = 0.05;
+		let growthFactor = GAME_CONFIG.COIN_GROWTH_FACTOR;
 
 		MessageBus.sendMessage(Messages.BallScale, scale + growthFactor);
 	}
@@ -189,7 +189,11 @@ export default class MainScene extends BaseScene {
 	}
 
 	private addPlayer() {
-		this.player = new Player(this, 200, 200);
+		this.player = new Player(
+			this,
+			GAME_CONFIG.BLOWER_SAN_STARTING_X,
+			GAME_CONFIG.BLOWER_SAN_STARTING_Y
+		);
 	}
 }
 

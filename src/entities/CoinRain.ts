@@ -2,7 +2,6 @@ import * as Phaser from 'phaser';
 
 import { Scene } from 'phaser';
 import Sprite = Phaser.GameObjects.Sprite;
-import Body = Phaser.Physics.Arcade.Body;
 
 export default class CoinRain extends Sprite {
 	initialX: number;
