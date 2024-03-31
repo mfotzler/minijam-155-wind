@@ -3,6 +3,8 @@ import UIHelpers from '../UIHelpers';
 import BaseScene from './BaseScene';
 import TutorialScene from './TutorialScene';
 import Player from '../entities/Player';
+import Vacuum from '../entities/Vacuum';
+import Sprite = Phaser.GameObjects.Sprite;
 
 export default class MainMenu extends BaseScene {
 	static readonly key = 'MainMenu';
@@ -17,6 +19,7 @@ export default class MainMenu extends BaseScene {
 		this.addMeme();
 		this.addPlayer();
 		this.addCoins();
+		this.addVacuum();
 	}
 
 	override preload() {
@@ -33,6 +36,13 @@ export default class MainMenu extends BaseScene {
 	private addPlayer() {
 		this.player = new Player(this, 350, 500, false);
 		this.player.sprite.scale = 2.5;
+	}
+
+	private vacuumSprite: Sprite;
+	private addVacuum() {
+		Vacuum.CreateAnimations(this);
+		this.vacuumSprite = this.add.sprite(350, 900, 'textures').play('vacuum');
+		this.vacuumSprite.scale = 1.5;
 	}
 
 	private addCoins() {

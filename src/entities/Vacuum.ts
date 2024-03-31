@@ -7,20 +7,14 @@ import Vector2 = Phaser.Math.Vector2;
 import Vector2Like = Phaser.Types.Math.Vector2Like;
 import Body = Phaser.Physics.Arcade.Body;
 import BaseSound = Phaser.Sound.BaseSound;
+import { Scene } from 'phaser';
 
 export default class Vacuum extends Container {
 	private static hasCreatedAnimations = false;
 	public vacuumSprite: Sprite;
 	keepDirection: boolean = false;
-	constructor(
-		scene: Phaser.Scene,
-		x: number,
-		y: number,
-		private ball: CoinBall,
-		private walls: TilemapLayer
-	) {
-		super(scene, x, y);
 
+	static CreateAnimations(scene: Scene) {
 		if (!Vacuum.hasCreatedAnimations) {
 			scene.anims.create({
 				key: 'vacuum',
@@ -34,6 +28,20 @@ export default class Vacuum extends Container {
 				repeat: -1
 			});
 			Vacuum.hasCreatedAnimations = true;
+		}
+	}
+
+	constructor(
+		scene: Phaser.Scene,
+		x: number,
+		y: number,
+		private ball: CoinBall,
+		private walls: TilemapLayer
+	) {
+		super(scene, x, y);
+
+		if (!Vacuum.hasCreatedAnimations) {
+			Vacuum.CreateAnimations(scene);
 		}
 
 		this.vacuumSprite = scene.add.sprite(0, 0, 'textures').play('vacuum');
